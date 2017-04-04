@@ -1,0 +1,19 @@
+{{#if isFastBoot}}
+  <vertical-collection>
+    {{#each jobs as |job|}}
+      {{job-item job=job}}
+    {{/each}}
+  </vertical-collection>
+{{else}}
+  {{#vertical-collection
+    content=jobs
+    key='@index'
+    containerSelector="body"
+    defaultHeight=125
+    scrollPosition=scrollPosition
+    firstVisibleChanged=(action 'firstVisibleChanged')
+    as |job index|
+  }}
+    {{job-item job=job}}
+  {{/vertical-collection}}
+{{/if}}

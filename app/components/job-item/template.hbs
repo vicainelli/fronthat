@@ -1,0 +1,21 @@
+{{#job-item-url-wrapper
+  slug=job.slug
+  url=job.url
+}}
+  <div class="job-item-content">
+    <div class="job-title" itemprop="title">
+      {{job.title}}
+    </div>
+    <div class="job-date">
+      <span itemprop="datePosted">
+        {{job.prettydate}}
+      </span>
+    </div>
+    <div class="job-company-name" itemprop="hiringOrganization" itemscope itemtype="http://schema.org/Organization">
+      <span itemprop="name">
+        {{job.company}}
+      </span>
+    </div>
+  </div>
+{{/job-item-url-wrapper}}
+<hr>

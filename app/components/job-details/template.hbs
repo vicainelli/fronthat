@@ -1,0 +1,20 @@
+<div class="job-details-main-toolbar">
+  <h1 itemprop="title">{{job.title}}</h1>
+</div>
+<div class="job-details-secondary-toolbar">
+  <div class="job-company" itemprop="hiringOrganization" itemscope itemtype="http://schema.org/Organization">
+    <h2 itemprop="name">{{job.company}}</h2>
+  </div>
+  <time class="job-date" itemprop="datePosted">{{job.prettydate}}</time>
+</div>
+<div class="job-details-content" itemprop="description">
+  {{markdown-to-html job.description}}
+</div>
+<div class="job-details-main-toolbar">
+  <a href={{href-to 'index'}} class="nav-button">
+    Back
+  </a>
+  <a href={{job.url}} target="_blank" class="nav-button" itemprop="url">
+    Apply
+  </a>
+</div>
