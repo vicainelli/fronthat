@@ -3,6 +3,8 @@
 [![Greenkeeper badge](https://badges.greenkeeper.io/erkarl/fronthat.svg)](https://greenkeeper.io/)
 [![Build Status](https://travis-ci.org/erkarl/fronthat.svg?branch=master)](https://travis-ci.org/erkarl/fronthat)
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/erkarl/fronthat.svg)](https://greenkeeper.io/)
+
 This repository contains front end application for [fronthat.com](https://fronthat.com).
 
 ## Prerequisites
