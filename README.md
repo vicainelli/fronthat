@@ -1,4 +1,3 @@
-
 # FrontHAT.com
 [![Greenkeeper badge](https://badges.greenkeeper.io/erkarl/fronthat.svg)](https://greenkeeper.io/)
 [![Build Status](https://travis-ci.org/erkarl/fronthat.svg?branch=master)](https://travis-ci.org/erkarl/fronthat)
@@ -10,7 +9,7 @@ This repository contains front end application for [fronthat.com](https://fronth
 You will need the following things properly installed on your computer.
 
 * [Git](https://git-scm.com/)
-* [Node.js](https://nodejs.org/) (version >= 0.12.0 with NPM)
+* [Node.js](https://nodejs.org/) (version >= 4 with NPM)
 * [Bower](https://bower.io/)
 * [Ember CLI](https://ember-cli.com/)
 * [PhantomJS](http://phantomjs.org/)
