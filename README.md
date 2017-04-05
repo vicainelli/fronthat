@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/erkarl/fronthat.svg?branch=master)](https://travis-ci.org/erkarl/fronthat)
+
 # FrontHAT.com
 
 This repository contains front end application for [fronthat.com](https://fronthat.com).
