@@ -15,6 +15,9 @@ const cacheVersion = guid();
 
 module.exports = function(defaults) {
   var app = new EmberApp(defaults, {
+    fingerprint: {
+      prepend: 'https://cdn.fronthat.com/'
+    },
     'esw-index': {
       location: '/',
       version: cacheVersion,
