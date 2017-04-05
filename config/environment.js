@@ -7,6 +7,15 @@ module.exports = function(environment) {
     rootURL: '/',
     locationType: 'auto',
     apiURL: 'https://api.fronthat.com',
+    contentSecurityPolicy: {
+      'default-src': ["'self'"],
+      'script-src':  ["'self'", "'unsafe-inline'", "www.google-analytics.com", "cdn.fronthat.com"],
+      'font-src':    ["'self'"],
+      'connect-src': ["'self'", "http://localhost:5984"],
+      'img-src':     ["'self'", "www.google-analytics.com", "cdn.fronthat.com"],
+      'style-src':   ["'self'", "'unsafe-inline'"],
+      'media-src':   ["'self'"]
+    },
     EmberENV: {
       FEATURES: {
         // Here you can enable experimental features on an ember canary build
