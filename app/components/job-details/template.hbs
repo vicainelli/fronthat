@@ -11,9 +11,9 @@
   {{markdown-to-html job.description}}
 </div>
 <div class="job-details-main-toolbar">
-  <a href={{href-to 'index'}} class="nav-button">
+  {{#link-to 'index' class="nav-button"}}
     Back
-  </a>
+  {{/link-to}}
   <a href={{job.url}} target="_blank" class="nav-button" itemprop="url">
     Apply
   </a>

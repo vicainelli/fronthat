@@ -8,7 +8,414 @@
 
     {{content-for "head"}}
     <style>
-html{font-size:16px;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}body,html{padding:0}body{font-family:Verdana,Geneva,sans-serif}body,h1,h2,hr,html{margin:0}h1{font-size:1.125rem}h2{font-size:.875rem}a{color:#616161;text-decoration:none}.nav-button{display:block;padding:.3125rem .625rem;font-size:.8125rem;border:.0625rem solid #212121;color:#212121}.nav-button-dark{border:.0625rem solid #f5f5f5;color:#f5f5f5}.first-eye-contact-area-container{text-align:center;background:#212121;color:#F5F5F5}.learn-more-container{display:flex;justify-content:center}.about-page-link{color:#BDBDBD;text-decoration:underline}.first-eye-contact-area{text-transform:uppercase;letter-spacing:.125rem;font-size:2rem;padding:1.875rem 1.25rem 0}.second-focus-point{width:50%;margin:1.563rem auto 0;border-top:.063rem solid #F5F5F5;padding:1.563rem}.subscribe-button{min-height:1.75rem;background:0 0}.subscribe-container{display:flex;justify-content:center;align-items:center}vertical-collection,vertical-item,vertical-item::after{display:block;position:relative}.email-input{border:none;box-shadow:none;padding:.375rem 1rem;background-color:#424242;color:#F5F5F5;font-family:inherit;font-weight:100;font-size:.813rem;margin-right:1.25rem;border-radius:.625rem;height:100%;box-sizing:border-box}.job-title{margin-bottom:.5rem;font-size:1rem;font-weight:600}.job-date{font-size:.875rem}vertical-collection{width:66.66%;margin:1.25rem auto;min-height:100%;box-shadow:0 0 1.875rem #E0E0E0}vertical-item{width:100%;min-height:.0625rem}vertical-item::after{content:' ';width:100%;height:0;float:none;clear:both}.job-company-name{width:100%;margin-top:.5rem}.job-item-content{height:5.1875rem;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center}.job-item:hover{background:#EEE}.job-details-content,.job-item-content,.question-container{padding:1.25rem}.main-toolbar{z-index:1;min-height:3.875rem;background:#212121;width:100%;position:fixed;top:0;display:flex;flex-wrap:wrap;justify-content:space-between;box-shadow:0 .3125rem 1.25rem #212121}.content{display:flex;flex-direction:column;margin-top:3.875rem}.fronthat-logo{margin-left:.9375rem}.logo-container{display:flex;align-items:center}.about-page,.job-details{margin:1.25rem auto;width:66.66%;box-shadow:0 0 1.875rem #E0E0E0}.job-load-error-text,.loading-indicator{text-align:center;margin-top:4rem}.job-details-main-toolbar,.job-details-secondary-toolbar{padding:0 1.25rem}.about-header{font-size:1.375rem;font-weight:600;padding:1.25rem 1.25rem 0}.navigation-container{display:flex;align-items:center}.navigation-container .nav-button{margin-right:1.25rem}.job-details-main-toolbar,.job-details-secondary-toolbar{min-height:3.5rem;display:flex;justify-content:space-between;align-items:center}.job-details-main-toolbar{background:#E0E0E0}.job-details-secondary-toolbar{background:#EEE}.job-load-error-text{font-size:1.25rem}@keyframes fadeIn{from{opacity:0}to{opacity:1}}.fadeIn{animation-duration:.75s;animation-fill-mode:both;animation-name:fadeIn}.ripple{position:relative;overflow:hidden;transform:translate3d(0,0,0)}.ripple:after{content:"";display:block;position:absolute;width:100%;height:100%;top:0;left:0;pointer-events:none;background-image:radial-gradient(circle,#fff 10%,transparent 10.01%);background-repeat:no-repeat;background-position:50%;transform:scale(10,10);opacity:0;transition:transform .5s,opacity 1s}.ripple:active:after{transform:scale(0,0);opacity:.2;transition:0s}.sk-folding-cube{margin:3rem auto;width:4rem;height:4rem;position:relative;-webkit-transform:rotateZ(45deg);transform:rotateZ(45deg)}.sk-folding-cube .sk-cube{float:left;width:50%;height:50%;position:relative;-webkit-transform:scale(1.1);-ms-transform:scale(1.1);transform:scale(1.1)}.sk-folding-cube .sk-cube:before{content:'';position:absolute;top:0;left:0;width:100%;height:100%;background-color:#333;-webkit-animation:sk-foldCubeAngle 2.4s infinite linear both;animation:sk-foldCubeAngle 2.4s infinite linear both;-webkit-transform-origin:100% 100%;-ms-transform-origin:100% 100%;transform-origin:100% 100%}.sk-folding-cube .sk-cube2{-webkit-transform:scale(1.1) rotateZ(90deg);transform:scale(1.1) rotateZ(90deg)}.sk-folding-cube .sk-cube3{-webkit-transform:scale(1.1) rotateZ(180deg);transform:scale(1.1) rotateZ(180deg)}.sk-folding-cube .sk-cube4{-webkit-transform:scale(1.1) rotateZ(270deg);transform:scale(1.1) rotateZ(270deg)}.sk-folding-cube .sk-cube2:before{-webkit-animation-delay:.3s;animation-delay:.3s}.sk-folding-cube .sk-cube3:before{-webkit-animation-delay:.6s;animation-delay:.6s}.sk-folding-cube .sk-cube4:before{-webkit-animation-delay:.9s;animation-delay:.9s}@-webkit-keyframes sk-foldCubeAngle{0%,10%{-webkit-transform:perspective(8.75rem) rotateX(-180deg);transform:perspective(8.75rem) rotateX(-180deg);opacity:0}25%,75%{-webkit-transform:perspective(8.75rem) rotateX(0);transform:perspective(8.75rem) rotateX(0);opacity:1}100%,90%{-webkit-transform:perspective(8.75rem) rotateY(180deg);transform:perspective(8.75rem) rotateY(180deg);opacity:0}}@keyframes sk-foldCubeAngle{0%,10%{-webkit-transform:perspective(8.75rem) rotateX(-180deg);transform:perspective(8.75rem) rotateX(-180deg);opacity:0}25%,75%{-webkit-transform:perspective(8.75rem) rotateX(0);transform:perspective(8.75rem) rotateX(0);opacity:1}100%,90%{-webkit-transform:perspective(8.75rem) rotateY(180deg);transform:perspective(8.75rem) rotateY(180deg);opacity:0}}@media (max-width:768px){.email-input,.nav-button{font-weight:700}h1{font-size:.875rem}.job-date,h2{font-size:.75rem}vertical-collection{box-shadow:none;margin:0;width:100%}.fronthat-logo{width:7.5rem}.navigation-container .nav-button{margin-right:.5rem}.about-page,.job-details{margin:0;width:100%;border-radius:.125rem}.subscribe-container{flex-direction:column}.email-input{margin-right:0;margin-bottom:1rem}.second-focus-point{width:75%}.first-eye-contact-area{font-size:1.5rem}.sk-folding-cube{width:2rem;height:2rem}}@media (min-width:1200px){.main-toolbar{height:4.375rem}.content{margin-top:4.375rem}.nav-button{font-size:1rem;padding:.5rem .9375rem}.fronthat-logo{height:2.5rem}}
+      html {
+          font-size: 16px;
+          -webkit-font-smoothing: antialiased;
+          -moz-osx-font-smoothing: grayscale
+      }
+      body,
+      html {
+          padding: 0
+      }
+      body {
+          font-family: Verdana, Geneva, sans-serif
+      }
+      body,
+      h1,
+      h2,
+      hr,
+      html {
+          margin: 0
+      }
+      h1 {
+          font-size: 1.125rem
+      }
+      h2 {
+          font-size: .875rem
+      }
+      a {
+          color: #616161;
+          text-decoration: none
+      }
+      .simple-message {
+        margin: 5% auto;
+        text-align: center;
+      }
+      .nav-button {
+          display: block;
+          padding: .3125rem .625rem;
+          font-size: .8125rem;
+          border: .0625rem solid #212121;
+          color: #212121
+      }
+      .nav-button-dark {
+          border: .0625rem solid #f5f5f5;
+          color: #f5f5f5
+      }
+      .first-eye-contact-area-container {
+          text-align: center;
+          background: #212121;
+          color: #F5F5F5
+      }
+      .learn-more-container {
+          display: flex;
+          justify-content: center
+      }
+      .about-page-link {
+          color: #BDBDBD;
+          text-decoration: underline
+      }
+      .first-eye-contact-area {
+          text-transform: uppercase;
+          letter-spacing: .125rem;
+          font-size: 2rem;
+          padding: 1.875rem 1.25rem 0
+      }
+      .second-focus-point {
+          width: 50%;
+          margin: 1.563rem auto 0;
+          border-top: .063rem solid #F5F5F5;
+          padding: 1.563rem
+      }
+      .subscribe-button {
+          min-height: 1.75rem;
+          background: 0 0
+      }
+      .subscribe-container {
+          display: flex;
+          justify-content: center;
+          align-items: center
+      }
+      vertical-collection {
+        display: block;
+        width: 100%;
+        min-height: 100%;
+        position: relative;
+      }
+      occluded-content {
+        display: block;
+        position: relative;
+        width: 100%;
+      }
+      .email-input {
+          border: none;
+          box-shadow: none;
+          padding: .375rem 1rem;
+          background-color: #424242;
+          color: #F5F5F5;
+          font-family: inherit;
+          font-weight: 100;
+          font-size: .813rem;
+          margin-right: 1.25rem;
+          border-radius: .625rem;
+          height: 100%;
+          box-sizing: border-box
+      }
+      .job-title {
+          margin-bottom: .5rem;
+          font-size: 1rem;
+          font-weight: 600
+      }
+      .job-date {
+          font-size: .875rem
+      }
+      vertical-collection {
+          width: 66.66%;
+          margin: 1.25rem auto;
+          min-height: 100%;
+          box-shadow: 0 0 1.875rem #E0E0E0
+      }
+      vertical-item {
+          width: 100%;
+          min-height: .0625rem
+      }
+      vertical-item::after {
+          content: ' ';
+          width: 100%;
+          height: 0;
+          float: none;
+          clear: both
+      }
+      .job-company-name {
+          width: 100%;
+          margin-top: .5rem
+      }
+      .job-item-content {
+          height: 5.1875rem;
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: space-between;
+          align-items: center
+      }
+      .job-item:hover {
+          background: #EEE
+      }
+      .job-details-content,
+      .job-item-content,
+      .question-container {
+          padding: 1.25rem
+      }
+      .main-toolbar {
+          z-index: 1;
+          min-height: 3.875rem;
+          background: #212121;
+          width: 100%;
+          position: fixed;
+          top: 0;
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: space-between;
+          box-shadow: 0 .3125rem 1.25rem #212121
+      }
+      .content {
+          display: flex;
+          flex-direction: column;
+          margin-top: 3.875rem
+      }
+      .fronthat-logo {
+          margin-left: .9375rem
+      }
+      .logo-container {
+          display: flex;
+          align-items: center
+      }
+      .about-page,
+      .job-details {
+          margin: 1.25rem auto;
+          width: 66.66%;
+          box-shadow: 0 0 1.875rem #E0E0E0
+      }
+      .job-load-error-text,
+      .loading-indicator {
+          text-align: center;
+          margin-top: 4rem
+      }
+      .job-details-main-toolbar,
+      .job-details-secondary-toolbar {
+          padding: 0 1.25rem
+      }
+      .about-header {
+          font-size: 1.375rem;
+          font-weight: 600;
+          padding: 1.25rem 1.25rem 0
+      }
+      .navigation-container {
+          display: flex;
+          align-items: center
+      }
+      .navigation-container .nav-button {
+          margin-right: 1.25rem
+      }
+      .job-details-main-toolbar,
+      .job-details-secondary-toolbar {
+          min-height: 3.5rem;
+          display: flex;
+          justify-content: space-between;
+          align-items: center
+      }
+      .job-details-main-toolbar {
+          background: #E0E0E0
+      }
+      .job-details-secondary-toolbar {
+          background: #EEE
+      }
+      .job-load-error-text {
+          font-size: 1.25rem
+      }
+      @keyframes fadeIn {
+          from {
+              opacity: 0
+          }
+          to {
+              opacity: 1
+          }
+      }
+      .fadeIn {
+          animation-duration: .75s;
+          animation-fill-mode: both;
+          animation-name: fadeIn
+      }
+      .ripple {
+          position: relative;
+          overflow: hidden;
+          transform: translate3d(0, 0, 0)
+      }
+      .ripple:after {
+          content: "";
+          display: block;
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          top: 0;
+          left: 0;
+          pointer-events: none;
+          background-image: radial-gradient(circle, #fff 10%, transparent 10.01%);
+          background-repeat: no-repeat;
+          background-position: 50%;
+          transform: scale(10, 10);
+          opacity: 0;
+          transition: transform .5s, opacity 1s
+      }
+      .ripple:active:after {
+          transform: scale(0, 0);
+          opacity: .2;
+          transition: 0s
+      }
+      .sk-folding-cube {
+          margin: 3rem auto;
+          width: 4rem;
+          height: 4rem;
+          position: relative;
+          -webkit-transform: rotateZ(45deg);
+          transform: rotateZ(45deg)
+      }
+      .sk-folding-cube .sk-cube {
+          float: left;
+          width: 50%;
+          height: 50%;
+          position: relative;
+          -webkit-transform: scale(1.1);
+          -ms-transform: scale(1.1);
+          transform: scale(1.1)
+      }
+      .sk-folding-cube .sk-cube:before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background-color: #333;
+          -webkit-animation: sk-foldCubeAngle 2.4s infinite linear both;
+          animation: sk-foldCubeAngle 2.4s infinite linear both;
+          -webkit-transform-origin: 100% 100%;
+          -ms-transform-origin: 100% 100%;
+          transform-origin: 100% 100%
+      }
+      .sk-folding-cube .sk-cube2 {
+          -webkit-transform: scale(1.1) rotateZ(90deg);
+          transform: scale(1.1) rotateZ(90deg)
+      }
+      .sk-folding-cube .sk-cube3 {
+          -webkit-transform: scale(1.1) rotateZ(180deg);
+          transform: scale(1.1) rotateZ(180deg)
+      }
+      .sk-folding-cube .sk-cube4 {
+          -webkit-transform: scale(1.1) rotateZ(270deg);
+          transform: scale(1.1) rotateZ(270deg)
+      }
+      .sk-folding-cube .sk-cube2:before {
+          -webkit-animation-delay: .3s;
+          animation-delay: .3s
+      }
+      .sk-folding-cube .sk-cube3:before {
+          -webkit-animation-delay: .6s;
+          animation-delay: .6s
+      }
+      .sk-folding-cube .sk-cube4:before {
+          -webkit-animation-delay: .9s;
+          animation-delay: .9s
+      }
+      @-webkit-keyframes sk-foldCubeAngle {
+          0%, 10% {
+              -webkit-transform: perspective(8.75rem) rotateX(-180deg);
+              transform: perspective(8.75rem) rotateX(-180deg);
+              opacity: 0
+          }
+          25%,
+          75% {
+              -webkit-transform: perspective(8.75rem) rotateX(0);
+              transform: perspective(8.75rem) rotateX(0);
+              opacity: 1
+          }
+          100%,
+          90% {
+              -webkit-transform: perspective(8.75rem) rotateY(180deg);
+              transform: perspective(8.75rem) rotateY(180deg);
+              opacity: 0
+          }
+      }
+      @keyframes sk-foldCubeAngle {
+          0%, 10% {
+              -webkit-transform: perspective(8.75rem) rotateX(-180deg);
+              transform: perspective(8.75rem) rotateX(-180deg);
+              opacity: 0
+          }
+          25%,
+          75% {
+              -webkit-transform: perspective(8.75rem) rotateX(0);
+              transform: perspective(8.75rem) rotateX(0);
+              opacity: 1
+          }
+          100%,
+          90% {
+              -webkit-transform: perspective(8.75rem) rotateY(180deg);
+              transform: perspective(8.75rem) rotateY(180deg);
+              opacity: 0
+          }
+      }
+      @media (max-width: 768px) {
+          .email-input,
+          .nav-button {
+              font-weight: 700
+          }
+          h1 {
+              font-size: .875rem
+          }
+          .job-date,
+          h2 {
+              font-size: .75rem
+          }
+          vertical-collection {
+              box-shadow: none;
+              margin: 0;
+              width: 100%
+          }
+          .fronthat-logo {
+              width: 7.5rem
+          }
+          .navigation-container .nav-button {
+              margin-right: .5rem
+          }
+          .about-page,
+          .job-details {
+              margin: 0;
+              width: 100%;
+              border-radius: .125rem
+          }
+          .subscribe-container {
+              flex-direction: column
+          }
+          .email-input {
+              margin-right: 0;
+              margin-bottom: 1rem
+          }
+          .second-focus-point {
+              width: 75%
+          }
+          .first-eye-contact-area {
+              font-size: 1.5rem
+          }
+          .sk-folding-cube {
+              width: 2rem;
+              height: 2rem
+          }
+      }
+      @media (min-width: 1200px) {
+          .main-toolbar {
+              height: 4.375rem
+          }
+          .content {
+              margin-top: 4.375rem
+          }
+          .nav-button {
+              font-size: 1rem;
+              padding: .5rem .9375rem
+          }
+          .fronthat-logo {
+              height: 2.5rem
+          }
+      }
     </style>
 
     {{content-for "head-footer"}}

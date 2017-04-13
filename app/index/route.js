@@ -121,8 +121,8 @@ export default Ember.Route.extend({
     this.set('headTags', headTags);
   },
   actions: {
-    firstVisibleChanged(scrollPosition) {
-      this.controller.set('scrollPosition', scrollPosition.scroll);
+    firstVisibleChanged(index) {
+      this.controller.set('scrollPosition', index);
     }
   }
 });

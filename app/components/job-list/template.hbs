@@ -5,15 +5,14 @@
     {{/each}}
   </vertical-collection>
 {{else}}
-  {{#vertical-collection
-    content=jobs
-    key='@index'
+  {{#vertical-collection jobs
     containerSelector="body"
-    defaultHeight=125
-    scrollPosition=scrollPosition
+    staticHeight=true
+    minHeight=125
+    key='@index'
+    idForFirstItem=scrollPosition
     firstVisibleChanged=(action 'firstVisibleChanged')
-    as |job index|
-  }}
+    as |job index|}}
     {{job-item job=job}}
   {{/vertical-collection}}
 {{/if}}
