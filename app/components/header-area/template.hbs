@@ -1,9 +1,17 @@
 <logo class="logo-container">
-  <a href="{{href-to 'index'}}">
+  {{#link-to 'index'}}
     <img class="fronthat-logo" width="170" height="35" src="{{rootUrl}}/assets/images/fh-logo.svg" alt="FrontHAT Logo">
-  </a>
+  {{/link-to}}
 </logo>
 <nav class="navigation-container">
-  <a href="{{href-to 'index'}}" class="nav-button nav-button-dark ripple">Job List</a>
-  <a href="{{href-to 'about'}}" class="nav-button nav-button-dark ripple">About</a>
+  {{#link-to 'index'
+    class="nav-button nav-button-dark ripple"
+  }}
+    Job List
+  {{/link-to}}
+  {{#link-to 'about'
+    class="nav-button nav-button-dark ripple"
+  }}
+    About
+  {{/link-to}}
 </nav>
