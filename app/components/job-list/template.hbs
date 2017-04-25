@@ -1,9 +1,9 @@
 {{#if isFastBoot}}
-  <vertical-collection>
+  <div class="vertical-collection">
     {{#each jobs as |job|}}
       {{job-item job=job}}
     {{/each}}
-  </vertical-collection>
+  </div>
 {{else}}
   {{#vertical-collection jobs
     containerSelector="body"
