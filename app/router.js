@@ -10,7 +10,7 @@ Router.map(function() {
   this.route('job', { path: '/jobs/:day/:month/:year/:slug' });
   this.route('loading');
   this.route('about');
-  this.route('not-found', { path: '/*path' });
+  this.route('not-found');
 });
 
 export default Router;
