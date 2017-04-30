@@ -1,28 +1,6 @@
 import Ember from 'ember';
-import { task } from 'ember-concurrency';
 
 export default Ember.Route.extend({
-  fastboot: Ember.inject.service(),
-  isFastBoot: Ember.computed.reads('fastboot.isFastBoot'),
-  model() {
-    if (this.get('isFastBoot')) {
-      return this.get('store').findAll('job');
-    } else if (this.currentModel) {
-      return this.currentModel;
-    }
-    return {
-      loadTask: this.get('fetchJobsTask').perform(),
-    };
-  },
-  setupController(controller) {
-    this._super(...arguments);
-    let store = this.get('store');
-    let jobs = store.peekAll('job');
-    controller.set('_loadedJobs', jobs);
-  },
-  fetchJobsTask: task(function * () {
-    return yield this.get('store').findAll('job');
-  }),
   afterModel: function(model) {
     this.setHeadTags(model);
   },
@@ -120,9 +98,4 @@ export default Ember.Route.extend({
 
     this.set('headTags', headTags);
   },
-  actions: {
-    firstVisibleChanged(index) {
-      this.controller.set('scrollPosition', index);
-    }
-  }
 });

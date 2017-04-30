@@ -1,17 +1,15 @@
 {{title 'Remote Frontend Jobs | FrontHAT'}}
 {{first-eye-contact-area}}
-{{#if model.loadTask.isRunning}}
+{{#if jobFetchStatus.isRunning}}
   {{loading-indicator loadingText='Updating...'}}
 {{/if}}
-{{#if (or model.loadTask.isSuccessful isFastBoot)}}
-  {{job-list
-    scrollPosition=scrollPosition
-    firstVisibleChanged='firstVisibleChanged'
-    jobs=jobs
-  }}
-{{/if}}
-{{#if model.loadTask.isError}}
+{{#if jobFetchStatus.isError}}
   <div class="job-load-error-text">
-    Oh, snap. Something went wrong or you're trying to access FrontHAT while offline (we're working on a better solution).
+    <p>Oh, snap. Something went wrong while trying to download new content.</p>
+    <p>Please reload the application, sorry.</p>
   </div>
 {{/if}}
+{{job-list
+  scrollPosition=scrollPosition
+  firstVisibleChanged='firstVisibleChanged'
+}}

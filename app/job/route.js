@@ -1,23 +1,53 @@
 import Ember from 'ember';
+const { Promise } = Ember.RSVP;
+import fetch from 'fetch';
+import ENV from 'fronthat/config/environment';
 
 export default Ember.Route.extend({
+  redux: Ember.inject.service(),
+
   model(params) {
+    const jobs = this.get('redux.store').getState().jobs.all;
     let fullSlug = params.day + "/" + params.month + "/" + params.year + "/" + params.slug;
-    let peekedJobs = this.get('store').peekAll('job');
-    let peekQuery = peekedJobs.filterBy('slug', fullSlug);
-    if (peekQuery.length > 0) {
-      return peekQuery.get('firstObject');
+    const job = jobs
+      .filter((job) => {
+        return job.attributes.slug === fullSlug;
+      });
+    if (job.length > 0) {
+      return job[0];
+    } else {
+      return new Promise((resolve, reject) => {
+        const jobDetailURL = `${ENV.apiURL}/jobs?slug=${fullSlug}`;
+        const detailsFetched = (response) => {
+          if (response.status === 200) {
+            return response.json();
+          }
+          return reject();
+        };
+        const detailsJson = (job) => {
+          if (job.data.length > 0) {
+            try {
+              const dispatch = this.get('redux.store.dispatch');
+              dispatch({
+                type: 'DESERIALIZE_JOBS',
+                response: job.data,
+              });
+              return resolve(job.data[0]);
+            } catch(e) {
+              return reject();
+            }
+          }
+          return reject();
+        };
+        return fetch(jobDetailURL)
+          .then(detailsFetched)
+          .then(detailsJson)
+      }).catch(() => {
+        this.transitionTo('/not-found');
+      });
     }
-    let returnFirstObject = (jobs) => {
-      if (jobs.content.length > 0) {
-        return jobs.get("firstObject");
-      }
-      this.transitionTo('/not-found');
-    };
-    return this.get('store').query('job', {
-      slug: fullSlug
-    }).then(returnFirstObject);
   },
+
   afterModel: function(model) {
     this.setHeadTags(model);
   },
@@ -29,7 +59,7 @@ export default Ember.Route.extend({
         tagId: 'meta-twitter-title',
         attrs: {
           name: 'twitter:title',
-          content: model.get('title'),
+          content: model.attributes.title,
         }
       },
       {
@@ -37,7 +67,7 @@ export default Ember.Route.extend({
         tagId: 'meta-og-title',
         attrs: {
           name: 'og:title',
-          content: model.get('title'),
+          content: model.attributes.title,
         }
       },
       {
@@ -45,7 +75,7 @@ export default Ember.Route.extend({
         tagId: 'description',
         attrs: {
           name: 'description',
-          content: model.get('seoDescription')
+          content: model.attributes['seo-description']
         }
       },
       {
@@ -53,7 +83,7 @@ export default Ember.Route.extend({
         tagId: 'meta-og-description',
         attrs: {
           name: 'og:description',
-          content: model.get('seoDescription')
+          content: model.attributes['seo-description']
         }
       },
       {
@@ -61,7 +91,7 @@ export default Ember.Route.extend({
         tagId: 'meta-twitter-description',
         attrs: {
           name: 'twitter:description',
-          content: model.get('seoDescription')
+          content: model.attributes['seo-description']
         }
       },
       {
@@ -69,7 +99,7 @@ export default Ember.Route.extend({
         tagId: 'meta-og-url',
         attrs: {
           name: 'og:url',
-          content: 'https://fronthat.com/jobs/' + model.get('slug')
+          content: 'https://fronthat.com/jobs/' + model.attributes.slug
         }
       },
       {

@@ -1,21 +1,21 @@
 {{#job-item-url-wrapper
-  slugend=job.slugend
-  day=job.day
-  month=job.month
-  year=job.year
+  slugend=job.attributes.slugend
+  day=job.attributes.day
+  month=job.attributes.month
+  year=job.attributes.year
 }}
   <div class="job-item-content">
     <div class="job-title" itemprop="title">
-      {{job.title}}
+      {{job.attributes.title}}
     </div>
     <div class="job-date">
       <span itemprop="datePosted">
-        {{job.prettydate}}
+        {{job.attributes.prettydate}}
       </span>
     </div>
     <div class="job-company-name" itemprop="hiringOrganization" itemscope itemtype="http://schema.org/Organization">
       <span itemprop="name">
-        {{job.company}}
+        {{job.attributes.company}}
       </span>
     </div>
   </div>
