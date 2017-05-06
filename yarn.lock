@@ -2952,9 +2952,9 @@ ember-qunit@^2.0.0-beta.1:
   dependencies:
     ember-test-helpers "^0.6.0-beta.1"
 
-ember-redux-offline-shim@1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/ember-redux-offline-shim/-/ember-redux-offline-shim-1.0.0.tgz#29201b6a4cd55b9bbe5aeacf15e0df380fe10722"
+ember-redux-offline-shim@1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/ember-redux-offline-shim/-/ember-redux-offline-shim-1.1.0.tgz#af6847bced51bffc750ae4e4223f5cbc0ad15428"
   dependencies:
     babel-plugin-transform-class-properties "^6.19.0"
     babel-plugin-transform-flow-strip-types "^6.22.0"
@@ -2966,9 +2966,9 @@ ember-redux-offline-shim@1.0.0:
     ember-cli-babel "^6.1.0"
     flow-bin "^0.42.0"
 
-ember-redux-persist-shim@^1.1.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/ember-redux-persist-shim/-/ember-redux-persist-shim-1.1.0.tgz#dbfc87de1c8c59f3352abef7726c95eaaf4d28d1"
+ember-redux-persist-shim@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/ember-redux-persist-shim/-/ember-redux-persist-shim-2.0.0.tgz#8c226c2c4e0cee7879fd360f9aa881875b5c6ffb"
   dependencies:
     babel-plugin-transform-object-rest-spread "^6.19.0"
     babel-preset-stage-2 "^6.22.0"
