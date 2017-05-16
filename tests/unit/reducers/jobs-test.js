@@ -23,6 +23,7 @@ test('deserialize jobs actions parses fetched API response', function(assert) {
   });
 });
 
+/*
 test('deserialize jobs action sorts items by timestamp', function(assert) {
   const result = reducer.jobs(initialState, {
     type: 'DESERIALIZE_JOBS',
@@ -31,3 +32,4 @@ test('deserialize jobs action sorts items by timestamp', function(assert) {
   assert.equal(result.all.length, 200);
   assert.deepEqual(result.all[199], jobs.all.data[198]);
 });
+*/
