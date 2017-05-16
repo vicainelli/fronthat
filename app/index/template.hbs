@@ -9,7 +9,11 @@
     <p>Please reload the application, sorry.</p>
   </div>
 {{/if}}
-{{job-list
+{{!
   scrollPosition=scrollPosition
   firstVisibleChanged='firstVisibleChanged'
+--}}
+{{#job-list-container as |jobs|
 }}
+  {{job-list jobs=jobs}}
+{{/job-list-container}}
