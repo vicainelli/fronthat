@@ -7,11 +7,6 @@ export default Ember.Component.extend({
   isFastBoot: Ember.computed.reads('fastboot.isFastBoot'),
   redux: Ember.inject.service(),
 
-  didReceiveAttrs() {
-    this._super(...arguments);
-    // console.log('attrs', this.attrs);
-  },
-
   sortedJobs: computed('jobs', function() {
     const byTimestamp = (x, y) => {
       return y.attributes.timestamp - x.attributes.timestamp;
@@ -21,16 +16,16 @@ export default Ember.Component.extend({
     return sortedJobs;
   }),
 
-  /*
-  actions: {
-    firstVisibleChanged(object, index) {
-      console.log('scrollPosition');
-      this.set('scrollPosition', index);
-    }
-  },
-  */
-
   layout: hbs`
+    {{#if (eq fetching true)}}
+      {{loading-indicator loadingText='Updating...'}}
+    {{/if}}
+    {{#if (eq fetching 'error')}}
+      <div class="job-load-error-text">
+        <p>Oh, snap. Something went wrong while trying to download new content.</p>
+        <p>Please reload the application, sorry.</p>
+      </div>
+    {{/if}}
     {{#if jobs}}
       {{#if isFastBoot}}
         <div class="vertical-collection">

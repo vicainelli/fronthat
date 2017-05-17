@@ -45,3 +45,25 @@ test('it sorts jobs by timestamp', function(assert) {
 
   assert.equal(_.includes(this.$('.job-item').last().text(), '15 May'), false);
 });
+
+test('it shows loading when fetching new', function(assert) {
+
+  this.set('fetching', true);
+
+  this.render(hbs`{{job-list fetching=fetching}}`);
+  const loadingIndicatorExist = () => {
+    return this.$('.loading-indicator').length === 1;
+  };
+  assert.equal(loadingIndicatorExist(), true);
+});
+
+test('it shows error when fetching failed', function(assert) {
+
+  this.set('fetching', 'error');
+
+  this.render(hbs`{{job-list fetching=fetching}}`);
+  const errorTextExists = () => {
+    return this.$('.job-load-error-text').length === 1;
+  };
+  assert.equal(errorTextExists(), true);
+});

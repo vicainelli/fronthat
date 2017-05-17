@@ -5,6 +5,7 @@ import hbs from 'htmlbars-inline-precompile';
 const stateToComputed = (state) => {
   return {
     jobs: state.jobs.all,
+    fetching: state.jobs.fetching,
   };
 };
 
@@ -26,7 +27,7 @@ const JobListComponent = Ember.Component.extend({
   */
 
   layout: hbs`
-    {{yield jobs}}
+    {{yield jobs fetching}}
   `
 
 });

@@ -4,20 +4,27 @@ import Ember from 'ember';
 const { assign } = Ember;
 
 const initialState = {
-  all: []
+  all: [],
+  fetching: false
 };
 
 const jobs = ((state, action) => {
   if (action.type === 'DESERIALIZE_JOBS') {
     const equalId = (job) => { return job.id; };
-    /*
-    const byTimestamp = (x, y) => {
-      return y.attributes.timestamp - x.attributes.timestamp;
-    };
-    */
     const merged = _.uniqBy(_.concat(state.all, action.response), equalId);
-      // .sort(byTimestamp);
     return assign({}, state, {all: merged});
+  }
+
+  if (action.type === 'FETCHING_JOBS') {
+    return assign({}, state, {fetching: true});
+  }
+
+  if (action.type === 'FETCHING_COMPLETE') {
+    return assign({}, state, {fetching: false});
+  }
+
+  if (action.type === 'FETCHING_ERROR') {
+    return assign({}, state, {fetching: 'error'});
   }
 
   return state || initialState;

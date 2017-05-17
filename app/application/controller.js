@@ -1,6 +1,4 @@
 import Ember from 'ember';
-import { task } from 'ember-concurrency';
-const { computed } = Ember;
 import JobListActions from '../mixins/job-list-actions';
 
 export default Ember.Controller.extend(JobListActions, {
@@ -13,31 +11,20 @@ export default Ember.Controller.extend(JobListActions, {
       const newOnlineValue = redux.store.getState().offline.online;
       if (online !== newOnlineValue) {
         online = newOnlineValue;
-        this.notifyPropertyChange('jobFetchStatus');
+        const jobsFetched = (jobs) => {
+          this.dispatchDerializeJobs(jobs);
+          this.dispatchFetchComplete();
+        };
+        const fetchError = () => {
+          this.dispatchFetchError();
+        };
+        if (online) {
+          this.dispatchFetchingJobs();
+          this.fetchJobsList().then(jobsFetched, fetchError);
+        }
       }
     };
     redux.store.subscribe(stateChanged);
   },
-
-  jobFetchStatus: computed(function() {
-    return this.get('loadAllJobsTask').perform();
-  }),
-
-  loadAllJobsTask: task(function * () {
-    const online = this.get('redux').store.getState().offline.online;
-    const shouldNotFetch = () => {
-      if (typeof FastBoot !== 'undefined' || !online) {
-        return true;
-      }
-      return false;
-    };
-    if (shouldNotFetch()) { return; }
-    try {
-      const jobs = yield this.fetchJobsList();
-      this.dispatchDerializeJobs(jobs);
-    } catch(e) {
-      throw new Error(e);
-    }
-  }).drop(),
 
 });

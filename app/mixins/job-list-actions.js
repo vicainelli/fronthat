@@ -25,10 +25,32 @@ export default Ember.Mixin.create({
   },
 
   dispatchDerializeJobs(jobs) {
-    const dispatch = this.get('redux.store.dispatch');
+    const dispatch = this.get('redux').store.dispatch;
     dispatch({
       type: 'DESERIALIZE_JOBS',
       response: jobs,
     });
   },
+
+  dispatchFetchError() {
+    const dispatch = this.get('redux').store.dispatch;
+    dispatch({
+      type: 'FETCHING_ERROR'
+    });
+  },
+
+  dispatchFetchingJobs() {
+    const dispatch = this.get('redux').store.dispatch;
+    dispatch({
+      type: 'FETCHING_JOBS'
+    });
+  },
+
+  dispatchFetchComplete() {
+    const dispatch = this.get('redux').store.dispatch;
+    dispatch({
+      type: 'FETCHING_COMPLETE'
+    });
+  }
+
 });

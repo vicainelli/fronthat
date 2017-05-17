@@ -1,11 +1,14 @@
 import reducer from 'fronthat/reducers/index';
 import { module, test } from 'qunit';
 import jobs from './jobs-json';
+import deepFreeze from 'fronthat/tests/helpers/deep-freeze';
+
 
 module('Unit | Reducers | jobs');
 
 const initialState = {
-  all: []
+  all: [],
+  fetching: false
 };
 
 test('the initial state is empty', function(assert) {
@@ -19,17 +22,51 @@ test('deserialize jobs actions parses fetched API response', function(assert) {
     response: [jobs.job1, jobs.job2, jobs.job3]
   });
   assert.deepEqual(result, {
-    all: [jobs.job1, jobs.job2, jobs.job3]
+    all: [jobs.job1, jobs.job2, jobs.job3],
+    fetching: false
   });
 });
 
-/*
-test('deserialize jobs action sorts items by timestamp', function(assert) {
+test('fetching jobs action sets a true flag', function(assert) {
   const result = reducer.jobs(initialState, {
-    type: 'DESERIALIZE_JOBS',
-    response: jobs.all.data
+    type: 'FETCHING_JOBS',
   });
-  assert.equal(result.all.length, 200);
-  assert.deepEqual(result.all[199], jobs.all.data[198]);
+  assert.deepEqual(result, {
+    all: [],
+    fetching: true
+  });
 });
-*/
+
+test('fetching complete action sets a false flag', function(assert) {
+  const previous = reducer.jobs(initialState, {
+    type: 'FETCHING_JOBS',
+  });
+
+  deepFreeze(previous);
+
+  const result = reducer.jobs(previous, {
+    type: 'FETCHING_COMPLETE',
+  });
+
+  assert.deepEqual(result, {
+    all: [],
+    fetching: false
+  });
+});
+
+test('fetching error action sets an error flag', function(assert) {
+  const previous = reducer.jobs(initialState, {
+    type: 'FETCHING_JOBS',
+  });
+
+  deepFreeze(previous);
+
+  const result = reducer.jobs(previous, {
+    type: 'FETCHING_ERROR',
+  });
+
+  assert.deepEqual(result, {
+    all: [],
+    fetching: 'error'
+  });
+});
