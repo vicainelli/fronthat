@@ -3,17 +3,15 @@
 {{#if jobFetchStatus.isRunning}}
   {{loading-indicator loadingText='Updating...'}}
 {{/if}}
+{{!--
 {{#if jobFetchStatus.isError}}
   <div class="job-load-error-text">
     <p>Oh, snap. Something went wrong while trying to download new content.</p>
     <p>Please reload the application, sorry.</p>
   </div>
 {{/if}}
-{{!
-  scrollPosition=scrollPosition
-  firstVisibleChanged='firstVisibleChanged'
---}}
 {{#job-list-container as |jobs|
 }}
-  {{job-list jobs=jobs}}
+  {{job-list jobs=jobs firstVisibleChanged=(action 'firstVisibleChanged')}}
 {{/job-list-container}}
+--}}

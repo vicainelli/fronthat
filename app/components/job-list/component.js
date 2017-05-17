@@ -7,6 +7,11 @@ export default Ember.Component.extend({
   isFastBoot: Ember.computed.reads('fastboot.isFastBoot'),
   redux: Ember.inject.service(),
 
+  didReceiveAttrs() {
+    this._super(...arguments);
+    // console.log('attrs', this.attrs);
+  },
+
   sortedJobs: computed('jobs', function() {
     const byTimestamp = (x, y) => {
       return y.attributes.timestamp - x.attributes.timestamp;
@@ -16,11 +21,14 @@ export default Ember.Component.extend({
     return sortedJobs;
   }),
 
+  /*
   actions: {
     firstVisibleChanged(object, index) {
+      console.log('scrollPosition');
       this.set('scrollPosition', index);
     }
   },
+  */
 
   layout: hbs`
     {{#if jobs}}
@@ -36,7 +44,7 @@ export default Ember.Component.extend({
           staticHeight=true
           minHeight=125
           key='@index'
-          firstVisibleChanged=(action 'firstVisibleChanged')
+          firstVisibleChanged=firstVisibleChanged
           idForFirstItem=scrollPosition
           as |job index|}}
           {{job-item job=job}}

@@ -11,7 +11,6 @@ const fastbootEnabled = {
   isFastBoot: true
 };
 
-
 test('it does not render anything given empty jobs', function(assert) {
 
   this.render(hbs`{{job-list}}`);
