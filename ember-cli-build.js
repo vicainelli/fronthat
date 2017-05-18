@@ -25,7 +25,10 @@ module.exports = function(defaults) {
         'images/**/*'
       ],
       version: cacheVersion,
-    }
+    },
+    'ember-cli-babel': {
+      includePolyfill: true
+    },
   });
 
   // Use `app.import` to add additional libraries to the generated

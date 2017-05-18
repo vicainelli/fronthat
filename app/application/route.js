@@ -10,6 +10,7 @@ export default Ember.Route.extend(JobListActions, {
         .then(this.dispatchDerializeJobs.bind(this));
     }
   },
+
   setupController(controller) {
     this._super(...arguments);
     controller.setupOnlineListener();
