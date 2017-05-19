@@ -85,3 +85,16 @@ test('it shows error when fetching failed', function(assert) {
   };
   assert.equal(errorTextExists(), true);
 });
+
+
+test('it filters to 95 results given developer search query', function(assert) {
+
+  this.set('jobs', jobs.all.data);
+  this.set('search', 'Developer');
+  this.set('fastboot', fastbootEnabled);
+  this.render(hbs`
+    {{job-list jobs=jobs search=search fastboot=fastboot}}
+  `);
+
+  assert.equal(this.$('.job-item').length, 95);
+});

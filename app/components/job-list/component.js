@@ -1,6 +1,7 @@
 import Ember from 'ember';
 import hbs from 'htmlbars-inline-precompile';
 const { computed } = Ember;
+import _ from 'lodash';
 
 export default Ember.Component.extend({
   bufferSize: 20,
@@ -8,14 +9,33 @@ export default Ember.Component.extend({
   isFastBoot: Ember.computed.reads('fastboot.isFastBoot'),
   redux: Ember.inject.service(),
 
-  sortedJobs: computed('jobs', function() {
+  sortedJobs: computed('jobs', 'search', function() {
     const byTimestamp = (x, y) => {
       return y.attributes.timestamp - x.attributes.timestamp;
     };
-    const sortedJobs = this.get('jobs')
+    const searchQuery = this.get('search');
+
+    const bySearchQuery = (job) => {
+      return _.includes(job.attributes.title.toUpperCase(), searchQuery.toUpperCase());
+    };
+
+    console.time('filterSearch');
+    if (searchQuery) {
+      return this.get('jobs')
+        .filter(bySearchQuery)
+        .sort(byTimestamp);
+    }
+    console.timeEnd('filterSearch');
+
+    return this.get('jobs')
       .sort(byTimestamp);
-    return sortedJobs;
   }),
+
+  actions: {
+    filterBySearch(searchQuery) {
+      this.set('search', searchQuery);
+    }
+  },
 
   layout: hbs`
     {{#if (eq fetching true)}}
@@ -28,6 +48,7 @@ export default Ember.Component.extend({
       </div>
     {{/if}}
     {{#if jobs}}
+      {{search-area searchChanged=(action 'filterBySearch')}}
       {{#if isFastBoot}}
         <div class="vertical-collection">
           {{#each sortedJobs as |job|}}
