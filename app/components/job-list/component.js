@@ -3,7 +3,6 @@ import hbs from 'htmlbars-inline-precompile';
 const { computed } = Ember;
 
 export default Ember.Component.extend({
-  bufferSize: 20,
   fastboot: Ember.inject.service(),
   isFastBoot: Ember.computed.reads('fastboot.isFastBoot'),
   redux: Ember.inject.service(),
@@ -36,7 +35,6 @@ export default Ember.Component.extend({
         </div>
       {{else}}
         {{#vertical-collection sortedJobs
-          bufferSize=bufferSize
           containerSelector="body"
           staticHeight=true
           minHeight=125
