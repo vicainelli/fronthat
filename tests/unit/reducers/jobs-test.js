@@ -1,6 +1,6 @@
 import reducer from 'fronthat/reducers/index';
 import { module, test } from 'qunit';
-import jobs from './jobs-json';
+import jobs from 'fronthat/mirage/json/jobs';
 import invalidJobs from './jobs-invalid-state';
 import deepFreeze from 'fronthat/tests/helpers/deep-freeze';
 
