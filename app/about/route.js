@@ -5,6 +5,7 @@ export default Ember.Route.extend({
     this.setHeadTags(model);
   },
   setHeadTags: function() {
+    const description = 'Learn more about FrontHAT. Frequently asked questions about FrontHAT - contact, bug reports, info about listings and more.';
     var headTags = [
       {
         type: 'meta',
@@ -27,7 +28,7 @@ export default Ember.Route.extend({
         tagId: 'description',
         attrs: {
           name: 'description',
-          content: 'Frequently asked questions about FrontHAT'
+          content: description
         }
       },
       {
@@ -35,7 +36,7 @@ export default Ember.Route.extend({
         tagId: 'meta-twitter-description',
         attrs: {
           name: 'twitter:description',
-          content: 'Frequently asked questions about FrontHAT'
+          content: description
         }
       },
       {
@@ -43,7 +44,7 @@ export default Ember.Route.extend({
         tagId: 'meta-og-description',
         attrs: {
           name: 'og:description',
-          content: 'Frequently asked questions about FrontHAT'
+          content: description
         }
       },
       {
