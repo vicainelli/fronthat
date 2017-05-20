@@ -1,6 +1,6 @@
 import { moduleForComponent, test, skip } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
-import jobs from '../../../unit/reducers/jobs-json';
+import jobs from 'fronthat/mirage/json/jobs';
 import _ from 'lodash';
 
 moduleForComponent('job-list', 'Integration | Component | job list', {
