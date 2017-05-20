@@ -10,8 +10,12 @@ const initialState = {
 
 const jobs = ((state, action) => {
   if (action.type === 'DESERIALIZE_JOBS') {
+    const currentState = state.all
+      .filter((job) => {
+        return !!job.attributes.timestamp;
+      });
     const equalId = (job) => { return job.id; };
-    const merged = _.uniqBy(_.concat(state.all, action.response), equalId);
+    const merged = _.uniqBy(_.concat(currentState, action.response), equalId);
     return assign({}, state, {all: merged});
   }
 
