@@ -1,6 +1,7 @@
 import reducer from 'fronthat/reducers/index';
 import { module, test } from 'qunit';
 import jobs from './jobs-json';
+import invalidJobs from './jobs-invalid-state';
 import deepFreeze from 'fronthat/tests/helpers/deep-freeze';
 
 
@@ -69,4 +70,18 @@ test('fetching error action sets an error flag', function(assert) {
     all: [],
     fetching: 'error'
   });
+});
+
+test('it removes offline jobs without timestamp', function(assert) {
+  const result = reducer.jobs(invalidJobs, {
+    type: 'DESERIALIZE_JOBS',
+    response: jobs.all.data
+  });
+  let withoutTimeStamp = 0;
+  result.all.forEach((job) => {
+    if (!job.attributes.timestamp) {
+      withoutTimeStamp++;
+    }
+  });
+  assert.equal(withoutTimeStamp, 0);
 });
