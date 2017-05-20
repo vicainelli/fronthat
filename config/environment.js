@@ -6,7 +6,7 @@ module.exports = function(environment) {
     environment: environment,
     rootURL: '/',
     locationType: 'auto',
-    apiURL: process.env.API_URL || 'http://localhost:8000',
+    apiURL: process.env.API_URL || 'https://api.fronthat.com/',
     EmberENV: {
       FEATURES: {
         // Here you can enable experimental features on an ember canary build
