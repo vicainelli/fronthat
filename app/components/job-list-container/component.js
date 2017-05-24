@@ -18,14 +18,6 @@ const JobListComponent = Ember.Component.extend({
   isFastBoot: Ember.computed.reads('fastboot.isFastBoot'),
   redux: Ember.inject.service(),
 
-  /*
-  actions: {
-    firstVisibleChanged(object, index) {
-      this.set('scrollPosition', index);
-    }
-  },
-  */
-
   layout: hbs`
     {{yield jobs fetching}}
   `
