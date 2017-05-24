@@ -11,6 +11,7 @@ Router.map(function() {
   this.route('loading');
   this.route('about');
   this.route('not-found');
+  this.route('post-a-job');
 });
 
 export default Router;
