@@ -122,3 +122,39 @@ test('UPDATE_NAME action updates errors', function(assert) {
 
 });
 
+test('UPDATE_EMAIL action updates email value', function(assert) {
+  const result = reducer.jobs(initialState, {
+    type: 'UPDATE_EMAIL',
+    email: 'the@fronthat.com',
+  });
+
+  const expected = assign({}, initialState, {
+    postAJobForm: {
+      email: {
+        value: 'the@fronthat.com',
+        errors: [],
+      },
+    }
+  });
+  assert.deepEqual(result, expected);
+
+});
+
+test('UPDATE_EMAIL action updates errors', function(assert) {
+  const result = reducer.jobs(initialState, {
+    type: 'UPDATE_EMAIL',
+    email: 'invalid.email',
+  });
+
+  const expected = assign({}, initialState, {
+    postAJobForm: {
+      email: {
+        value: 'invalid.email',
+        errors: ['Please enter a valid email address.'],
+      },
+    }
+  });
+  assert.deepEqual(result, expected);
+
+});
+

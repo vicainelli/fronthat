@@ -52,6 +52,25 @@ const jobs = ((state, action) => {
     });
   }
 
+  if (action.type === 'UPDATE_EMAIL') {
+    const errors = [];
+    const isInvalidEmail = () => {
+      const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+      return !re.test(action.email);
+    };
+    if (isInvalidEmail()) {
+      errors.push('Please enter a valid email address.')
+    }
+    return assign({}, state, {
+      postAJobForm: {
+        email: {
+          value: action.email,
+          errors: errors,
+        }
+      }
+    });
+  }
+
   return state || initialState;
 });
 
