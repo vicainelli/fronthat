@@ -5,8 +5,9 @@ export default Ember.Component.extend({
 
   layout: hbs`
     <div data-test-post-a-job-area-container>
+
       <div class="input container" data-test-name-input-container>
-        <label for="name-input">Name</label>
+        <label for="name-input" data-test-name-input-label>Name</label>
         {{one-way-input
           name.value
           id="name-input"
@@ -18,6 +19,23 @@ export default Ember.Component.extend({
           </span>
         {{/if}}
       </div>
+
+      <div class="input container" data-test-email-input-container>
+        <label for="email-input" data-test-email-input-label>Email</label>
+        {{one-way-input
+          email.value
+          id="email-input"
+          update=updateEmail
+          type='email'
+          data=test-email
+        }}
+        {{#if email.errors}}
+          <span data-test-email-input-errors>
+            {{email.errors}}
+          </span>
+        {{/if}}
+      </div>
+
     </div>
   `
 });
