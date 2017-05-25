@@ -39,13 +39,13 @@ const jobs = ((state, action) => {
 
   if (action.type === 'UPDATE_NAME') {
     const errors = [];
-    if (action.response.length < 3) {
+    if (action.name.length < 3) {
       errors.push('Name must be at least 3 characters.')
     }
     return assign({}, state, {
       postAJobForm: {
         name: {
-          value: action.response,
+          value: action.name,
           errors: errors,
         }
       }

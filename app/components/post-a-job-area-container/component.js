@@ -10,7 +10,7 @@ const stateToComputed = (state) => {
 
 const dispatchToActions = (dispatch) => {
   return {
-    updateName: (newName) => dispatch({type: 'UPDATE_NAME', name: newName})
+    updateName: (name) => dispatch({type: 'UPDATE_NAME', name})
   };
 };
 
@@ -18,7 +18,7 @@ const PostAJobAreaComponent = Ember.Component.extend({
   redux: Ember.inject.service(),
 
   layout: hbs`
-    {{yield (action 'updateName')}}
+    {{yield name (action 'updateName')}}
   `
 
 });

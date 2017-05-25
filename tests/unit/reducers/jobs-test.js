@@ -89,7 +89,7 @@ test('it removes offline jobs without timestamp', function(assert) {
 test('UPDATE_NAME action updates name value', function(assert) {
   const result = reducer.jobs(initialState, {
     type: 'UPDATE_NAME',
-    response: 'Peter Gregory'
+    name: 'Peter Gregory',
   });
 
   const expected = assign({}, initialState, {
@@ -107,7 +107,7 @@ test('UPDATE_NAME action updates name value', function(assert) {
 test('UPDATE_NAME action updates errors', function(assert) {
   const result = reducer.jobs(initialState, {
     type: 'UPDATE_NAME',
-    response: 'A'
+    name: 'A',
   });
 
   const expected = assign({}, initialState, {

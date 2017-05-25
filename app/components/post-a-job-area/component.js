@@ -10,7 +10,7 @@ export default Ember.Component.extend({
         {{one-way-input
           name.value
           id="name-input"
-          updateName=updateName
+          update=updateName
         }}
         {{#if name.errors}}
           <span data-test-name-input-errors>
