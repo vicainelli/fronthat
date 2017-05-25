@@ -24,6 +24,7 @@ test('filling in post a job form with errors', async function(assert) {
 });
 
 test('does not display errors on initial load', async function(assert) {
+  localStorage.removeItem('reduxPersist:jobs')
   await visit('/post-a-job');
   const nameInputErrors = await find(testSelector('name-input-errors'));
   assert.equal(nameInputErrors.length, 0, 'It does not have name input errors');
