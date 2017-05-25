@@ -22,3 +22,9 @@ test('filling in post a job form with errors', async function(assert) {
   const nameInputErrors = await find(testSelector('name-input-errors'));
   assert.equal(nameInputErrors.length, 1, 'It does have input errors');
 });
+
+test('does not display errors on initial load', async function(assert) {
+  await visit('/post-a-job');
+  const nameInputErrors = await find(testSelector('name-input-errors'));
+  assert.equal(nameInputErrors.length, 0, 'It does not have name input errors');
+});
