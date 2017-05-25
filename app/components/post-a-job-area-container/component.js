@@ -2,19 +2,23 @@ import Ember from 'ember';
 import connect from 'ember-redux/components/connect';
 import hbs from 'htmlbars-inline-precompile';
 
-const stateToComputed = (/* state */) => {
-  return {};
+const stateToComputed = (state) => {
+  return {
+    name: state.jobs.postAJobForm.name,
+  };
 };
 
-const dispatchToActions = () => {
-  return {};
+const dispatchToActions = (dispatch) => {
+  return {
+    updateName: (newName) => dispatch({type: 'UPDATE_NAME', name: newName})
+  };
 };
 
 const PostAJobAreaComponent = Ember.Component.extend({
   redux: Ember.inject.service(),
 
   layout: hbs`
-    {{yield}}
+    {{yield (action 'updateName')}}
   `
 
 });

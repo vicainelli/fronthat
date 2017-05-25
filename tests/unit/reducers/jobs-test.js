@@ -3,13 +3,20 @@ import { module, test } from 'qunit';
 import jobs from 'fronthat/mirage/json/jobs';
 import invalidJobs from './jobs-invalid-state';
 import deepFreeze from 'fronthat/tests/helpers/deep-freeze';
-
+import Ember from 'ember';
+const { assign } = Ember;
 
 module('Unit | Reducers | jobs');
 
 const initialState = {
   all: [],
-  fetching: false
+  fetching: false,
+  postAJobForm: {
+    name: {
+      value: '',
+      errors: []
+    }
+  }
 };
 
 test('the initial state is empty', function(assert) {
@@ -22,20 +29,16 @@ test('deserialize jobs actions parses fetched API response', function(assert) {
     type: 'DESERIALIZE_JOBS',
     response: [jobs.job1, jobs.job2, jobs.job3]
   });
-  assert.deepEqual(result, {
-    all: [jobs.job1, jobs.job2, jobs.job3],
-    fetching: false
-  });
+  const expected = assign({}, initialState, {all: [jobs.job1, jobs.job2, jobs.job3]});
+  assert.deepEqual(result, expected);
 });
 
 test('fetching jobs action sets a true flag', function(assert) {
   const result = reducer.jobs(initialState, {
     type: 'FETCHING_JOBS',
   });
-  assert.deepEqual(result, {
-    all: [],
-    fetching: true
-  });
+  const expected = assign({}, initialState, {fetching: true});
+  assert.deepEqual(result, expected);
 });
 
 test('fetching complete action sets a false flag', function(assert) {
@@ -49,10 +52,8 @@ test('fetching complete action sets a false flag', function(assert) {
     type: 'FETCHING_COMPLETE',
   });
 
-  assert.deepEqual(result, {
-    all: [],
-    fetching: false
-  });
+  const expected = assign({}, previous, {fetching: false});
+  assert.deepEqual(result, expected);
 });
 
 test('fetching error action sets an error flag', function(assert) {
@@ -66,10 +67,8 @@ test('fetching error action sets an error flag', function(assert) {
     type: 'FETCHING_ERROR',
   });
 
-  assert.deepEqual(result, {
-    all: [],
-    fetching: 'error'
-  });
+  const expected = assign({}, previous, {fetching: 'error'});
+  assert.deepEqual(result, expected);
 });
 
 test('it removes offline jobs without timestamp', function(assert) {

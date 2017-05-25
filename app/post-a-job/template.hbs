@@ -1,3 +1,6 @@
-{{#post-a-job-area-container}}
-  {{post-a-job-area}}
+{{#post-a-job-area-container as |name updateName|}}
+  {{post-a-job-area
+    name=name
+    updateName=updateName
+  }}
 {{/post-a-job-area-container}}

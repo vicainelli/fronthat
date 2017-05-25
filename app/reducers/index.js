@@ -5,7 +5,13 @@ const { assign } = Ember;
 
 const initialState = {
   all: [],
-  fetching: false
+  fetching: false,
+  postAJobForm: {
+    name: {
+      value: '',
+      errors: []
+    }
+  }
 };
 
 const jobs = ((state, action) => {
