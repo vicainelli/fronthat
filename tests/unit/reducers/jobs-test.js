@@ -84,3 +84,41 @@ test('it removes offline jobs without timestamp', function(assert) {
   });
   assert.equal(withoutTimeStamp, 0);
 });
+
+
+test('UPDATE_NAME action updates name value', function(assert) {
+  const result = reducer.jobs(initialState, {
+    type: 'UPDATE_NAME',
+    response: 'Peter Gregory'
+  });
+
+  const expected = assign({}, initialState, {
+    postAJobForm: {
+      name: {
+        value: 'Peter Gregory',
+        errors: [],
+      },
+    }
+  });
+  assert.deepEqual(result, expected);
+
+});
+
+test('UPDATE_NAME action updates errors', function(assert) {
+  const result = reducer.jobs(initialState, {
+    type: 'UPDATE_NAME',
+    response: 'A'
+  });
+
+  const expected = assign({}, initialState, {
+    postAJobForm: {
+      name: {
+        value: 'A',
+        errors: ['Name must be at least 3 characters.'],
+      },
+    }
+  });
+  assert.deepEqual(result, expected);
+
+});
+

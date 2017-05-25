@@ -37,6 +37,21 @@ const jobs = ((state, action) => {
     return assign({}, state, {fetching: 'error'});
   }
 
+  if (action.type === 'UPDATE_NAME') {
+    const errors = [];
+    if (action.response.length < 3) {
+      errors.push('Name must be at least 3 characters.')
+    }
+    return assign({}, state, {
+      postAJobForm: {
+        name: {
+          value: action.response,
+          errors: errors,
+        }
+      }
+    });
+  }
+
   return state || initialState;
 });
 
