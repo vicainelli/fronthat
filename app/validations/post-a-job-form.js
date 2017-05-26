@@ -71,6 +71,15 @@ const postAJobFormValidator = {
       return ['Please enter a valid URL'];
     }
     return [];
-  }
+  },
+  description: (description) => {
+    if (description.length < 255) {
+      return ['Description must be at least 255 characters.'];
+    }
+    if (description.length > 15000) {
+      return ['Description is too long. Maximum 15000 characters allowed.'];
+    }
+    return [];
+  },
 };
 export default postAJobFormValidator;
