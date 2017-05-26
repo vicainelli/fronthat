@@ -221,3 +221,57 @@ test('does display URL invalid error', function(assert) {
   const urlInputErrors = this.$(testSelector('url-input-errors')).text().trim();
   assert.equal(urlInputErrors, errorText, 'Does display URL invalid error');
 });
+
+// Description
+test('displays description input with text description-is', function(assert) {
+  const description = {
+    value: 'description-is',
+    errors: []
+  };
+  const updateDescription = () => {};
+  this.set('description', description);
+  this.set('updateDescription', updateDescription);
+  this.render(hbs`{{post-a-job-area description=description updateDescription=updateDescription}}`);
+  const descriptionInputValue = this.$('#description-input').val();
+  assert.equal(descriptionInputValue, description.value, 'Description value is description-is');
+});
+
+test('displays label for description input', function(assert) {
+  const description = {
+    value: '',
+    errors: []
+  };
+  const updateDescription = () => {};
+  this.set('description', description);
+  this.set('updateDescription', updateDescription);
+  this.render(hbs`{{post-a-job-area description=description updateDescription=updateDescription}}`);
+  const descriptionInputLabel = this.$(testSelector('description-input-label')).text();
+  assert.equal(descriptionInputLabel, 'Description', 'Label value is Description');
+});
+
+test('does not display description input errors by default', function(assert) {
+  const description = {
+    value: '',
+    errors: []
+  };
+  const updateDescription = () => {};
+  this.set('description', description);
+  this.set('updateDescription', updateDescription);
+  this.render(hbs`{{post-a-job-area description=description updateDescription=updateDescription}}`);
+  const descriptionInputErrors = this.$(testSelector('description-input-errors'));
+  assert.equal(descriptionInputErrors.length, 0, 'Does not show description input errors');
+});
+
+test('does display description invalid error', function(assert) {
+  const errorText = 'Invalid description.';
+  const description = {
+    value: '',
+    errors: [errorText]
+  };
+  const updateDescription = () => {};
+  this.set('description', description);
+  this.set('updateDescription', updateDescription);
+  this.render(hbs`{{post-a-job-area description=description updateDescription=updateDescription}}`);
+  const descriptionInputErrors = this.$(testSelector('description-input-errors')).text().trim();
+  assert.equal(descriptionInputErrors, errorText, 'Does display description invalid error');
+});
