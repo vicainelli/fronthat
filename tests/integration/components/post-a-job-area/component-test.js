@@ -113,3 +113,57 @@ test('does display email invalid error', function(assert) {
   const emailInputErrors = this.$(testSelector('email-input-errors')).text().trim();
   assert.equal(emailInputErrors, errorText, 'Does display email invalid error');
 });
+
+// TITLE
+test('displays title input with text Random Title', function(assert) {
+  const title = {
+    value: 'Random Title',
+    errors: []
+  };
+  const updateTitle = () => {};
+  this.set('title', title);
+  this.set('updateTitle', updateTitle);
+  this.render(hbs`{{post-a-job-area title=title updateTitle=updateTitle}}`);
+  const titleInputValue = this.$('#title-input').val();
+  assert.equal(titleInputValue, title.value, 'Title value is Random Title');
+});
+
+test('displays label for title input', function(assert) {
+  const title = {
+    value: '',
+    errors: []
+  };
+  const updateTitle = () => {};
+  this.set('title', title);
+  this.set('updateTitle', updateTitle);
+  this.render(hbs`{{post-a-job-area title=title updateTitle=updateTitle}}`);
+  const titleInputLabel = this.$(testSelector('title-input-label')).text();
+  assert.equal(titleInputLabel, 'Title', 'Label value is Title');
+});
+
+test('does not display title input errors by default', function(assert) {
+  const title = {
+    value: '',
+    errors: []
+  };
+  const updateTitle = () => {};
+  this.set('title', title);
+  this.set('updateTitle', updateTitle);
+  this.render(hbs`{{post-a-job-area title=title updateTitle=updateTitle}}`);
+  const titleInputErrors = this.$(testSelector('title-input-errors'));
+  assert.equal(titleInputErrors.length, 0, 'Does not show title input errors');
+});
+
+test('does display title invalid error', function(assert) {
+  const errorText = 'Please enter a valid title.';
+  const title = {
+    value: '',
+    errors: [errorText]
+  };
+  const updateTitle = () => {};
+  this.set('title', title);
+  this.set('updateTitle', updateTitle);
+  this.render(hbs`{{post-a-job-area title=title updateTitle=updateTitle}}`);
+  const titleInputErrors = this.$(testSelector('title-input-errors')).text().trim();
+  assert.equal(titleInputErrors, errorText, 'Does display title invalid error');
+});

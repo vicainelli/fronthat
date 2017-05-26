@@ -35,6 +35,21 @@ export default Ember.Component.extend({
         {{/if}}
       </div>
 
+      <div class="input container" data-test-title-input-container>
+        <label for="title-input" data-test-title-input-label>Title</label>
+        {{one-way-input
+          title.value
+          id="title-input"
+          update=updateTitle
+          type='title'
+        }}
+        {{#if title.errors}}
+          <span data-test-title-input-errors>
+            {{title.errors}}
+          </span>
+        {{/if}}
+      </div>
+
     </div>
   `
 });
