@@ -65,7 +65,7 @@ export default Ember.Component.extend({
 
       <div class="input container" data-test-description-input-container>
         <label for="description-input" data-test-description-input-label>Description</label>
-        {{one-way-input
+        {{one-way-textarea
           description.value
           id="description-input"
           update=updateDescription
