@@ -185,3 +185,37 @@ test('UPDATE_POST_A_JOB_FORM action email does not overwrite name data', functio
   });
   assert.deepEqual(result, expected);
 });
+
+test('UPDATE_POST_A_JOB_FORM action updates title value', function(assert) {
+  const result = reducer.jobs(initialState, {
+    type: 'UPDATE_POST_A_JOB_FORM',
+    data: {field: 'title', value: 'Some Title Goes Here'}
+  });
+
+  const postAJobForm = {
+    title: {
+      value: 'Some Title Goes Here',
+      errors: [],
+    }
+  };
+  const newPostAJobForm = assign({}, initialState.postAJobForm, postAJobForm);
+  const expected = assign({}, initialState, {postAJobForm: newPostAJobForm});
+  assert.deepEqual(result, expected);
+});
+
+test('UPDATE_POST_A_JOB_FORM action updates title value errors', function(assert) {
+  const result = reducer.jobs(initialState, {
+    type: 'UPDATE_POST_A_JOB_FORM',
+    data: {field: 'title', value: 'INV'}
+  });
+
+  const postAJobForm = {
+    title: {
+      value: 'INV',
+      errors: ['Title must be at least 20 characters.'],
+    }
+  };
+  const newPostAJobForm = assign({}, initialState.postAJobForm, postAJobForm);
+  const expected = assign({}, initialState, {postAJobForm: newPostAJobForm});
+  assert.deepEqual(result, expected);
+});
