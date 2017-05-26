@@ -41,11 +41,24 @@ export default Ember.Component.extend({
           title.value
           id="title-input"
           update=updateTitle
-          type='title'
         }}
         {{#if title.errors}}
           <span data-test-title-input-errors>
             {{title.errors}}
+          </span>
+        {{/if}}
+      </div>
+
+      <div class="input container" data-test-url-input-container>
+        <label for="url-input" data-test-url-input-label>URL</label>
+        {{one-way-input
+          url.value
+          id="url-input"
+          update=updateURL
+        }}
+        {{#if url.errors}}
+          <span data-test-url-input-errors>
+            {{url.errors}}
           </span>
         {{/if}}
       </div>

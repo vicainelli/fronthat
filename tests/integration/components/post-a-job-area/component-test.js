@@ -167,3 +167,57 @@ test('does display title invalid error', function(assert) {
   const titleInputErrors = this.$(testSelector('title-input-errors')).text().trim();
   assert.equal(titleInputErrors, errorText, 'Does display title invalid error');
 });
+
+// URL
+test('displays url input with text https://google.com', function(assert) {
+  const url = {
+    value: 'https://google.com',
+    errors: []
+  };
+  const updateURL = () => {};
+  this.set('url', url);
+  this.set('updateURL', updateURL);
+  this.render(hbs`{{post-a-job-area url=url updateURL=updateURL}}`);
+  const urlInputValue = this.$('#url-input').val();
+  assert.equal(urlInputValue, url.value, 'URL value is https://google.com');
+});
+
+test('displays label for URL input', function(assert) {
+  const url = {
+    value: '',
+    errors: []
+  };
+  const updateURL = () => {};
+  this.set('url', url);
+  this.set('updateURL', updateURL);
+  this.render(hbs`{{post-a-job-area url=url updateURL=updateURL}}`);
+  const urlInputLabel = this.$(testSelector('url-input-label')).text();
+  assert.equal(urlInputLabel, 'URL', 'Label value is URL');
+});
+
+test('does not display URL input errors by default', function(assert) {
+  const url = {
+    value: '',
+    errors: []
+  };
+  const updateURL = () => {};
+  this.set('url', url);
+  this.set('updateURL', updateURL);
+  this.render(hbs`{{post-a-job-area url=url updateURL=updateURL}}`);
+  const urlInputErrors = this.$(testSelector('url-input-errors'));
+  assert.equal(urlInputErrors.length, 0, 'Does not show URL input errors');
+});
+
+test('does display URL invalid error', function(assert) {
+  const errorText = 'Please enter a correct URL.';
+  const url = {
+    value: '',
+    errors: [errorText]
+  };
+  const updateURL = () => {};
+  this.set('url', url);
+  this.set('updateURL', updateURL);
+  this.render(hbs`{{post-a-job-area url=url updateURL=updateURL}}`);
+  const urlInputErrors = this.$(testSelector('url-input-errors')).text().trim();
+  assert.equal(urlInputErrors, errorText, 'Does display URL invalid error');
+});
