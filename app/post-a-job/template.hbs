@@ -1,4 +1,4 @@
-{{#post-a-job-area-container as |name updateName email updateEmail title updateTitle url updateURL description updateDescription|}}
+{{#post-a-job-area-container as |name updateName email updateEmail title updateTitle url updateURL description updateDescription disabled|}}
   {{post-a-job-area
     name=name
     updateName=updateName
@@ -10,5 +10,6 @@
     updateURL=updateURL
     description=description
     updateDescription=updateDescription
+    disabled=disabled
   }}
 {{/post-a-job-area-container}}

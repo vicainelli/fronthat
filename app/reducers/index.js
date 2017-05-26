@@ -15,6 +15,18 @@ const initialState = {
     email: {
       value: '',
       errors: []
+    },
+    url: {
+      value: '',
+      errors: []
+    },
+    title: {
+      value: '',
+      errors: []
+    },
+    description: {
+      value: '',
+      errors: []
     }
   }
 };

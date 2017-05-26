@@ -79,9 +79,9 @@ export default Ember.Component.extend({
 
       <div class="submit-area">
         {{#if disabled}}
-          <input class="nav-button nav-button-dark post-a-job-button" type="submit" name="submit" value="Post a Job" data-test-submit-button disabled />
+          <input class="nav-button nav-button-dark post-a-job-button" type="submit" name="submit" value="Post a Job" data-test-submit-button-disabled disabled />
         {{else}}
-          <input class="nav-button nav-button-dark post-a-job-button" type="submit" name="submit" value="Post a Job" data-test-submit-button />
+          <input class="nav-button nav-button-dark post-a-job-button disabled" type="submit" name="submit" value="Post a Job" data-test-submit-button />
         {{/if}}
       </div>
 

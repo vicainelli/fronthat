@@ -3,13 +3,22 @@ import connect from 'ember-redux/components/connect';
 import hbs from 'htmlbars-inline-precompile';
 
 const stateToComputed = (state) => {
-  return {
-    name: state.jobs.postAJobForm.name,
-    email: state.jobs.postAJobForm.email,
-    title: state.jobs.postAJobForm.title,
-    url: state.jobs.postAJobForm.url,
-    description: state.jobs.postAJobForm.description,
+  const name = state.jobs.postAJobForm.name;
+  const email = state.jobs.postAJobForm.email;
+  const title = state.jobs.postAJobForm.title;
+  const url = state.jobs.postAJobForm.url;
+  const description = state.jobs.postAJobForm.description;
+  const isReadyToSubmit = (field) => {
+    return !!field.value && field.errors.length === 0;
   };
+  const disabled = () => {
+    return !(isReadyToSubmit(name) &&
+      isReadyToSubmit(email) &&
+      isReadyToSubmit(title) &&
+      isReadyToSubmit(url) &&
+      isReadyToSubmit(description));
+  };
+  return {name, email, title, url, description, disabled: disabled()};
 };
 
 const dispatchToActions = (dispatch) => {
@@ -36,7 +45,7 @@ const PostAJobAreaComponent = Ember.Component.extend({
   redux: Ember.inject.service(),
 
   layout: hbs`
-    {{yield name (action 'updateName') email (action 'updateEmail') title (action 'updateTitle') url (action 'updateURL') description (action 'updateDescription')}}
+    {{yield name (action 'updateName') email (action 'updateEmail') title (action 'updateTitle') url (action 'updateURL') description (action 'updateDescription') disabled}}
   `
 
 });

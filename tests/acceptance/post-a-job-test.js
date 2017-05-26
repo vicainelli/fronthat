@@ -4,11 +4,6 @@ import testSelector from 'ember-test-selectors';
 
 moduleForAcceptance('Acceptance | post a job');
 
-test('visiting /post-a-job', async function(assert) {
-  await visit('/post-a-job');
-  assert.equal(currentURL(), '/post-a-job');
-});
-
 test('filling in post a job form', async function(assert) {
   await visit('/post-a-job');
   await fillIn('#name-input', 'Russ Hanneman');
@@ -33,6 +28,8 @@ test('filling in post a job form', async function(assert) {
   assert.equal(urlInputErrors.length, 0, 'It does not have url input errors');
   const descriptionInputErrors = await find(testSelector('description-input-errors'));
   assert.equal(descriptionInputErrors.length, 0, 'It does not have description input errors');
+  const submitButton = await find(testSelector('submit-button'));
+  assert.equal(submitButton.attr('disabled'), undefined, 'Post a Job button is enabled');
 });
 
 test('filling in post a job form with errors', async function(assert) {
@@ -53,6 +50,8 @@ test('filling in post a job form with errors', async function(assert) {
   assert.equal(urlInputErrors.length, 1, 'It does have url input errors');
   const descriptionInputErrors = await find(testSelector('description-input-errors'));
   assert.equal(descriptionInputErrors.length, 1, 'It does have description input errors');
+  const submitButton = await find(testSelector('submit-button-disabled'));
+  assert.equal(submitButton.length, 1, 'Post a Job button is disabled');
 });
 
 test('does not display errors on initial load', async function(assert) {
@@ -68,4 +67,6 @@ test('does not display errors on initial load', async function(assert) {
   assert.equal(urlInputErrors.length, 0, 'It does not have url input errors');
   const descriptionInputErrors = await find(testSelector('description-input-errors'));
   assert.equal(descriptionInputErrors.length, 0, 'It does not have description input errors');
+  const submitButton = await find(testSelector('submit-button-disabled'));
+  assert.equal(submitButton.length, 1, 'Post a Job button is disabled');
 });

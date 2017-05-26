@@ -276,17 +276,16 @@ test('does display description invalid error', function(assert) {
   assert.equal(descriptionInputErrors, errorText, 'Does display description invalid error');
 });
 
+// SUBMIT
 test('displays an active submit button', function(assert) {
   this.render(hbs`{{post-a-job-area}}`);
   const submitButton = this.$(testSelector('submit-button'));
   assert.equal(submitButton.length, 1, 'Does display submit button');
-  assert.equal(submitButton.attr('disabled'), undefined, 'Submit button is not disabled');
 });
 
 test('displays a disabled submit button', function(assert) {
   this.set('disabled', true);
   this.render(hbs`{{post-a-job-area disabled=disabled}}`);
-  const submitButton = this.$(testSelector('submit-button'));
+  const submitButton = this.$(testSelector('submit-button-disabled'));
   assert.equal(submitButton.length, 1, 'Does display submit button');
-  assert.equal(submitButton.attr('disabled'), 'disabled', 'Submit button is disabled');
 });

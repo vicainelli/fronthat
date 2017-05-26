@@ -19,6 +19,18 @@ const initialState = {
     email: {
       value: '',
       errors: []
+    },
+    url: {
+      value: '',
+      errors: []
+    },
+    title: {
+      value: '',
+      errors: []
+    },
+    description: {
+      value: '',
+      errors: []
     }
   }
 };
@@ -171,18 +183,19 @@ test('UPDATE_POST_A_JOB_FORM action email does not overwrite name data', functio
     data: {field: 'name', value: 'Gavin'}
   });
 
-  const expected = assign({}, initialState, {
-    postAJobForm: {
-      name: {
-        value: 'Gavin',
-        errors: [],
-      },
-      email: {
-        value: 'invalid.email',
-        errors: ['Please enter a valid email address.'],
-      },
-    }
-  });
+  const postAJobForm = {
+    name: {
+      value: 'Gavin',
+      errors: [],
+    },
+    email: {
+      value: 'invalid.email',
+      errors: ['Please enter a valid email address.'],
+    },
+  };
+
+  const newPostAJobForm = assign({}, initialState.postAJobForm, postAJobForm);
+  const expected = assign({}, initialState, {postAJobForm: newPostAJobForm});
   assert.deepEqual(result, expected);
 });
 
