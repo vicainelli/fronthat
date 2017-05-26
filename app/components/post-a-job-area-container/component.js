@@ -12,10 +12,10 @@ const stateToComputed = (state) => {
 const dispatchToActions = (dispatch) => {
   return {
     updateName: (name) => {
-      dispatch({type: 'UPDATE_NAME', name});
+      dispatch({type: 'UPDATE_POST_A_JOB_FORM', data: {field: 'name', value: name}});
     },
     updateEmail: (email) => {
-      dispatch({type: 'UPDATE_EMAIL', email});
+      dispatch({type: 'UPDATE_POST_A_JOB_FORM', data: {field: 'email', value: email}});
     }
   };
 };

@@ -1,5 +1,6 @@
 import _ from 'lodash';
 import Ember from 'ember';
+import postAJobFormValidator from 'fronthat/validations/post-a-job-form';
 
 const { assign } = Ember;
 
@@ -41,35 +42,13 @@ const jobs = ((state, action) => {
     return assign({}, state, {fetching: 'error'});
   }
 
-  if (action.type === 'UPDATE_NAME') {
-    const errors = [];
-    if (action.name.length < 3) {
-      errors.push('Name must be at least 3 characters.')
-    }
-    const postAJobForm = {
-      name: {
-        value: action.name,
-        errors: errors,
-      }
-    };
-    const newPostAJobForm = assign({}, state.postAJobForm, postAJobForm);
-    return assign({}, state, {postAJobForm: newPostAJobForm});
-  }
 
-  if (action.type === 'UPDATE_EMAIL') {
-    const errors = [];
-    const isInvalidEmail = () => {
-      const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-      return !re.test(action.email);
-    };
-    if (isInvalidEmail()) {
-      errors.push('Please enter a valid email address.')
-    }
-    const postAJobForm = {
-      email: {
-        value: action.email,
-        errors: errors,
-      }
+  if (action.type === 'UPDATE_POST_A_JOB_FORM') {
+    const field = action.data.field;
+    const postAJobForm = {};
+    postAJobForm[field] = {
+      value: action.data.value,
+      errors: postAJobFormValidator[field](action.data.value),
     };
     const newPostAJobForm = assign({}, state.postAJobForm, postAJobForm);
     return assign({}, state, {postAJobForm: newPostAJobForm});

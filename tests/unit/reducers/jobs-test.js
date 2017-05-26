@@ -90,10 +90,10 @@ test('it removes offline jobs without timestamp', function(assert) {
 });
 
 
-test('UPDATE_NAME action updates name value', function(assert) {
+test('UPDATE_POST_A_JOB_FORM action updates name value', function(assert) {
   const result = reducer.jobs(initialState, {
-    type: 'UPDATE_NAME',
-    name: 'Peter Gregory',
+    type: 'UPDATE_POST_A_JOB_FORM',
+    data: {field: 'name', value: 'Peter Gregory'}
   });
 
   const postAJobForm = {
@@ -105,102 +105,70 @@ test('UPDATE_NAME action updates name value', function(assert) {
   const newPostAJobForm = assign({}, initialState.postAJobForm, postAJobForm);
   const expected = assign({}, initialState, {postAJobForm: newPostAJobForm});
   assert.deepEqual(result, expected);
-
 });
 
-test('UPDATE_NAME action updates errors', function(assert) {
+test('UPDATE_POST_A_JOB_FORM action updates name value errors', function(assert) {
   const result = reducer.jobs(initialState, {
-    type: 'UPDATE_NAME',
-    name: 'A',
+    type: 'UPDATE_POST_A_JOB_FORM',
+    data: {field: 'name', value: 'AS'}
   });
 
   const postAJobForm = {
     name: {
-      value: 'A',
+      value: 'AS',
       errors: ['Name must be at least 3 characters.'],
-    },
+    }
   };
   const newPostAJobForm = assign({}, initialState.postAJobForm, postAJobForm);
   const expected = assign({}, initialState, {postAJobForm: newPostAJobForm});
   assert.deepEqual(result, expected);
-
 });
 
-test('UPDATE_EMAIL action updates email value', function(assert) {
+test('UPDATE_POST_A_JOB_FORM action updates email value', function(assert) {
   const result = reducer.jobs(initialState, {
-    type: 'UPDATE_EMAIL',
-    email: 'the@fronthat.com',
+    type: 'UPDATE_POST_A_JOB_FORM',
+    data: {field: 'email', value: 'the@fronthat.com'}
   });
 
-  const postAJobForm =  assign({}, initialState.postAJobForm, {
+  const postAJobForm = {
     email: {
       value: 'the@fronthat.com',
       errors: [],
-    },
-  });
-  const expected = assign({}, initialState, {postAJobForm});
+    }
+  };
+  const newPostAJobForm = assign({}, initialState.postAJobForm, postAJobForm);
+  const expected = assign({}, initialState, {postAJobForm: newPostAJobForm});
   assert.deepEqual(result, expected);
-
 });
 
-test('UPDATE_EMAIL action updates errors', function(assert) {
+test('UPDATE_POST_A_JOB_FORM action updates email value errors', function(assert) {
   const result = reducer.jobs(initialState, {
-    type: 'UPDATE_EMAIL',
-    email: 'invalid.email',
+    type: 'UPDATE_POST_A_JOB_FORM',
+    data: {field: 'email', value: 'invalid.email'}
   });
 
-  const postAJobForm = assign({}, initialState.postAJobForm, {
+  const postAJobForm = {
     email: {
       value: 'invalid.email',
       errors: ['Please enter a valid email address.'],
-    },
-  });
-  const expected = assign({}, initialState, {postAJobForm});
-  assert.deepEqual(result, expected);
-
-});
-
-
-test('UPDATE_EMAIL action does not overwrite UPDATE_NAME data', function(assert) {
-  const previous = reducer.jobs(initialState, {
-    type: 'UPDATE_NAME',
-    name: 'AA',
-  });
-
-  deepFreeze(previous);
-
-  const result = reducer.jobs(previous, {
-    type: 'UPDATE_EMAIL',
-    email: 'invalid.email',
-  });
-
-  const expected = assign({}, initialState, {
-    postAJobForm: {
-      name: {
-        value: 'AA',
-        errors: ['Name must be at least 3 characters.'],
-      },
-      email: {
-        value: 'invalid.email',
-        errors: ['Please enter a valid email address.'],
-      },
     }
-  });
+  };
+  const newPostAJobForm = assign({}, initialState.postAJobForm, postAJobForm);
+  const expected = assign({}, initialState, {postAJobForm: newPostAJobForm});
   assert.deepEqual(result, expected);
 });
 
-
-test('UPDATE_NAME action does not overwrite UPDATE_EMAIL data', function(assert) {
+test('UPDATE_POST_A_JOB_FORM action email does not overwrite name data', function(assert) {
   const previous = reducer.jobs(initialState, {
-    type: 'UPDATE_EMAIL',
-    email: 'gavin@hooli.xyz',
+    type: 'UPDATE_POST_A_JOB_FORM',
+    data: {field: 'email', value: 'invalid.email'}
   });
 
   deepFreeze(previous);
 
   const result = reducer.jobs(previous, {
-    type: 'UPDATE_NAME',
-    name: 'Gavin',
+    type: 'UPDATE_POST_A_JOB_FORM',
+    data: {field: 'name', value: 'Gavin'}
   });
 
   const expected = assign({}, initialState, {
@@ -210,8 +178,8 @@ test('UPDATE_NAME action does not overwrite UPDATE_EMAIL data', function(assert)
         errors: [],
       },
       email: {
-        value: 'gavin@hooli.xyz',
-        errors: [],
+        value: 'invalid.email',
+        errors: ['Please enter a valid email address.'],
       },
     }
   });
