@@ -10,6 +10,10 @@ const initialState = {
     name: {
       value: '',
       errors: []
+    },
+    email: {
+      value: '',
+      errors: []
     }
   }
 };
@@ -42,14 +46,14 @@ const jobs = ((state, action) => {
     if (action.name.length < 3) {
       errors.push('Name must be at least 3 characters.')
     }
-    return assign({}, state, {
-      postAJobForm: {
-        name: {
-          value: action.name,
-          errors: errors,
-        }
+    const postAJobForm = {
+      name: {
+        value: action.name,
+        errors: errors,
       }
-    });
+    };
+    const newPostAJobForm = assign({}, state.postAJobForm, postAJobForm);
+    return assign({}, state, {postAJobForm: newPostAJobForm});
   }
 
   if (action.type === 'UPDATE_EMAIL') {
@@ -61,14 +65,14 @@ const jobs = ((state, action) => {
     if (isInvalidEmail()) {
       errors.push('Please enter a valid email address.')
     }
-    return assign({}, state, {
-      postAJobForm: {
-        email: {
-          value: action.email,
-          errors: errors,
-        }
+    const postAJobForm = {
+      email: {
+        value: action.email,
+        errors: errors,
       }
-    });
+    };
+    const newPostAJobForm = assign({}, state.postAJobForm, postAJobForm);
+    return assign({}, state, {postAJobForm: newPostAJobForm});
   }
 
   return state || initialState;

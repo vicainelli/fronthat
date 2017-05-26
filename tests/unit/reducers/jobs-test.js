@@ -15,6 +15,10 @@ const initialState = {
     name: {
       value: '',
       errors: []
+    },
+    email: {
+      value: '',
+      errors: []
     }
   }
 };
@@ -92,14 +96,14 @@ test('UPDATE_NAME action updates name value', function(assert) {
     name: 'Peter Gregory',
   });
 
-  const expected = assign({}, initialState, {
-    postAJobForm: {
-      name: {
-        value: 'Peter Gregory',
-        errors: [],
-      },
+  const postAJobForm = {
+    name: {
+      value: 'Peter Gregory',
+      errors: [],
     }
-  });
+  };
+  const newPostAJobForm = assign({}, initialState.postAJobForm, postAJobForm);
+  const expected = assign({}, initialState, {postAJobForm: newPostAJobForm});
   assert.deepEqual(result, expected);
 
 });
@@ -110,14 +114,14 @@ test('UPDATE_NAME action updates errors', function(assert) {
     name: 'A',
   });
 
-  const expected = assign({}, initialState, {
-    postAJobForm: {
-      name: {
-        value: 'A',
-        errors: ['Name must be at least 3 characters.'],
-      },
-    }
-  });
+  const postAJobForm = {
+    name: {
+      value: 'A',
+      errors: ['Name must be at least 3 characters.'],
+    },
+  };
+  const newPostAJobForm = assign({}, initialState.postAJobForm, postAJobForm);
+  const expected = assign({}, initialState, {postAJobForm: newPostAJobForm});
   assert.deepEqual(result, expected);
 
 });
@@ -128,14 +132,13 @@ test('UPDATE_EMAIL action updates email value', function(assert) {
     email: 'the@fronthat.com',
   });
 
-  const expected = assign({}, initialState, {
-    postAJobForm: {
-      email: {
-        value: 'the@fronthat.com',
-        errors: [],
-      },
-    }
+  const postAJobForm =  assign({}, initialState.postAJobForm, {
+    email: {
+      value: 'the@fronthat.com',
+      errors: [],
+    },
   });
+  const expected = assign({}, initialState, {postAJobForm});
   assert.deepEqual(result, expected);
 
 });
@@ -146,8 +149,37 @@ test('UPDATE_EMAIL action updates errors', function(assert) {
     email: 'invalid.email',
   });
 
+  const postAJobForm = assign({}, initialState.postAJobForm, {
+    email: {
+      value: 'invalid.email',
+      errors: ['Please enter a valid email address.'],
+    },
+  });
+  const expected = assign({}, initialState, {postAJobForm});
+  assert.deepEqual(result, expected);
+
+});
+
+
+test('UPDATE_EMAIL action does not overwrite UPDATE_NAME data', function(assert) {
+  const previous = reducer.jobs(initialState, {
+    type: 'UPDATE_NAME',
+    name: 'AA',
+  });
+
+  deepFreeze(previous);
+
+  const result = reducer.jobs(previous, {
+    type: 'UPDATE_EMAIL',
+    email: 'invalid.email',
+  });
+
   const expected = assign({}, initialState, {
     postAJobForm: {
+      name: {
+        value: 'AA',
+        errors: ['Name must be at least 3 characters.'],
+      },
       email: {
         value: 'invalid.email',
         errors: ['Please enter a valid email address.'],
@@ -155,6 +187,33 @@ test('UPDATE_EMAIL action updates errors', function(assert) {
     }
   });
   assert.deepEqual(result, expected);
-
 });
 
+
+test('UPDATE_NAME action does not overwrite UPDATE_EMAIL data', function(assert) {
+  const previous = reducer.jobs(initialState, {
+    type: 'UPDATE_EMAIL',
+    email: 'gavin@hooli.xyz',
+  });
+
+  deepFreeze(previous);
+
+  const result = reducer.jobs(previous, {
+    type: 'UPDATE_NAME',
+    name: 'Gavin',
+  });
+
+  const expected = assign({}, initialState, {
+    postAJobForm: {
+      name: {
+        value: 'Gavin',
+        errors: [],
+      },
+      email: {
+        value: 'gavin@hooli.xyz',
+        errors: [],
+      },
+    }
+  });
+  assert.deepEqual(result, expected);
+});

@@ -27,7 +27,6 @@ export default Ember.Component.extend({
           id="email-input"
           update=updateEmail
           type='email'
-          data=test-email
         }}
         {{#if email.errors}}
           <span data-test-email-input-errors>
