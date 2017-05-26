@@ -219,3 +219,79 @@ test('UPDATE_POST_A_JOB_FORM action updates title value errors', function(assert
   const expected = assign({}, initialState, {postAJobForm: newPostAJobForm});
   assert.deepEqual(result, expected);
 });
+
+test('UPDATE_POST_A_JOB_FORM action updates url value', function(assert) {
+  const result = reducer.jobs(initialState, {
+    type: 'UPDATE_POST_A_JOB_FORM',
+    data: {field: 'url', value: 'https://google.com'}
+  });
+
+  const postAJobForm = {
+    url: {
+      value: 'https://google.com',
+      errors: [],
+    }
+  };
+  const newPostAJobForm = assign({}, initialState.postAJobForm, postAJobForm);
+  const expected = assign({}, initialState, {postAJobForm: newPostAJobForm});
+  assert.deepEqual(result, expected);
+});
+
+test('UPDATE_POST_A_JOB_FORM action updates url value errors', function(assert) {
+  const result = reducer.jobs(initialState, {
+    type: 'UPDATE_POST_A_JOB_FORM',
+    data: {field: 'url', value: 'invalidurl'}
+  });
+
+  const postAJobForm = {
+    url: {
+      value: 'invalidurl',
+      errors: ['Please enter a valid URL.'],
+    }
+  };
+  const newPostAJobForm = assign({}, initialState.postAJobForm, postAJobForm);
+  const expected = assign({}, initialState, {postAJobForm: newPostAJobForm});
+  assert.deepEqual(result, expected);
+});
+
+test('UPDATE_POST_A_JOB_FORM action updates description value', function(assert) {
+  let description = '';
+  for (let i = 0; i < 255; i++) {
+    description = description + 'A';
+  }
+  const result = reducer.jobs(initialState, {
+    type: 'UPDATE_POST_A_JOB_FORM',
+    data: {field: 'description', value: description}
+  });
+
+  const postAJobForm = {
+    description: {
+      value: description,
+      errors: [],
+    }
+  };
+  const newPostAJobForm = assign({}, initialState.postAJobForm, postAJobForm);
+  const expected = assign({}, initialState, {postAJobForm: newPostAJobForm});
+  assert.deepEqual(result, expected);
+});
+
+test('UPDATE_POST_A_JOB_FORM action updates description value errors', function(assert) {
+  let invalidDescription = '';
+  for (let i = 0; i < 15001; i++) {
+    invalidDescription = invalidDescription + 'A';
+  }
+  const result = reducer.jobs(initialState, {
+    type: 'UPDATE_POST_A_JOB_FORM',
+    data: {field: 'description', value: invalidDescription}
+  });
+
+  const postAJobForm = {
+    description: {
+      value: invalidDescription,
+      errors: ['Description is too long. Maximum 15000 characters allowed.'],
+    }
+  };
+  const newPostAJobForm = assign({}, initialState.postAJobForm, postAJobForm);
+  const expected = assign({}, initialState, {postAJobForm: newPostAJobForm});
+  assert.deepEqual(result, expected);
+});

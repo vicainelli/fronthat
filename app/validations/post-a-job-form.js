@@ -68,7 +68,7 @@ const postAJobFormValidator = {
       return !re.test(url);
     };
     if (isInvalidUrl()) {
-      return ['Please enter a valid URL'];
+      return ['Please enter a valid URL.'];
     }
     return [];
   },
