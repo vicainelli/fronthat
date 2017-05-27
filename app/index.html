@@ -46,7 +46,9 @@
           padding: .3125rem .625rem;
           font-size: .8125rem;
           border: .0625rem solid #212121;
-          color: #212121
+          color: #212121;
+          background-color: transparent;
+          cursor: pointer;
       }
       .nav-button-dark {
           border: .0625rem solid #f5f5f5;
@@ -85,6 +87,26 @@
           display: flex;
           justify-content: center;
           align-items: center
+      }
+      .post-a-job {
+        border: none;
+        background-color: #FFFFFF;
+        height: 6rem;
+      }
+      .post-a-job a {
+        border: none;
+        width: 66.66%;
+        margin: auto;
+        top: 2rem;
+        box-shadow: 0 0 1.875rem #E0E0E0;
+        box-sizing: border-box;
+        height: 3.5rem;
+        color: #616161;
+        font-size: 1rem;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        justify-content: center;
       }
       vertical-collection {
         display: block;
@@ -370,6 +392,9 @@
               box-shadow: none;
               margin: 0;
               width: 100%
+          }
+          .post-a-job a {
+            width: 80%;
           }
           .fronthat-logo {
               width: 7.5rem
