@@ -6,35 +6,6 @@ export default Ember.Component.extend({
   layout: hbs`
     <div data-test-post-a-job-area-container>
 
-      <div class="input container" data-test-name-input-container>
-        <label for="name-input" data-test-name-input-label>Name</label>
-        {{one-way-input
-          name.value
-          id="name-input"
-          update=updateName
-        }}
-        {{#if name.errors}}
-          <span data-test-name-input-errors>
-            {{name.errors}}
-          </span>
-        {{/if}}
-      </div>
-
-      <div class="input container" data-test-email-input-container>
-        <label for="email-input" data-test-email-input-label>Email</label>
-        {{one-way-input
-          email.value
-          id="email-input"
-          update=updateEmail
-          type='email'
-        }}
-        {{#if email.errors}}
-          <span data-test-email-input-errors>
-            {{email.errors}}
-          </span>
-        {{/if}}
-      </div>
-
       <div class="input container" data-test-title-input-container>
         <label for="title-input" data-test-title-input-label>Title</label>
         {{one-way-input
@@ -61,6 +32,9 @@ export default Ember.Component.extend({
             {{url.errors}}
           </span>
         {{/if}}
+        <span class="url-input-tip">
+          URL to apply: https://yourcompany.com/careers/apply
+        </span>
       </div>
 
       <div class="input container" data-test-description-input-container>
@@ -75,6 +49,41 @@ export default Ember.Component.extend({
             {{description.errors}}
           </span>
         {{/if}}
+      </div>
+
+      <div class="input container" data-test-name-input-container>
+        <label for="name-input" data-test-name-input-label>Name</label>
+        {{one-way-input
+          name.value
+          id="name-input"
+          update=updateName
+        }}
+        {{#if name.errors}}
+          <span data-test-name-input-errors>
+            {{name.errors}}
+          </span>
+        {{/if}}
+        <span class="name-input-tip">
+          Enter your or company name.
+        </span>
+      </div>
+
+      <div class="input container" data-test-email-input-container>
+        <label for="email-input" data-test-email-input-label>Email</label>
+        {{one-way-input
+          email.value
+          id="email-input"
+          update=updateEmail
+          type='email'
+        }}
+        {{#if email.errors}}
+          <span data-test-email-input-errors>
+            {{email.errors}}
+          </span>
+        {{/if}}
+        <span class="email-input-tip">
+          For receipt and confirmation email.
+        </span>
       </div>
 
       {{#if errors}}
