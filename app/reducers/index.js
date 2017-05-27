@@ -9,6 +9,7 @@ const initialState = {
   fetching: false,
   posting: false,
   postAJobForm: {
+    errors: [],
     name: {
       value: '',
       errors: []

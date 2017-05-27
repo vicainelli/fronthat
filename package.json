@@ -65,6 +65,8 @@
     "ember-service-worker": "0.6.6",
     "ember-service-worker-asset-cache": "0.6.1",
     "ember-service-worker-index": "0.6.1",
+    "ember-sinon": "^0.7.0",
+    "ember-sinon-qunit": "^1.6.0",
     "ember-source": "~2.13.0",
     "ember-symbol-observable": "0.1.2",
     "ember-test-selectors": "^0.3.3",

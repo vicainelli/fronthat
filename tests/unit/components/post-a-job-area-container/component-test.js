@@ -1,4 +1,7 @@
-import { moduleForComponent, test } from 'ember-qunit';
+import { moduleForComponent } from 'ember-qunit';
+import test from 'ember-sinon-qunit/test-support/test';
+import Ember from 'ember';
+const { Promise } = Ember.RSVP;
 
 moduleForComponent('post-a-job-area-container', 'Unit | Component | post a job area container', {
   needs: ['service:redux'],
@@ -35,4 +38,41 @@ test('it returns true for disabled when name, title, url, description & email ar
   component.actions.updateTitle('Too Short');
   component.actions.updateDescription('Too Short');
   assert.equal(component.get('disabled'), true, 'It has disabled submit');
+});
+
+test('it does show errors while idle', function(assert) {
+  let component = this.subject();
+  const error1 = 'A';
+  const error2 = 'B';
+  component.actions.postingAJobError([error1, error2]);
+  assert.deepEqual(component.get('errors'), [error1, error2], 'Does show errors while idle');
+});
+
+test('it does not show errors while loading', function(assert) {
+  let component = this.subject();
+  const error1 = 'A';
+  const error2 = 'B';
+  component.actions.postingAJobError([error1, error2]);
+  component.actions.postingAJob();
+  assert.deepEqual(component.get('errors'), [], 'Does not show errors while loading');
+});
+
+test('postAJob dispatches POSTING_A_JOB -> POSTING_A_JOB_COMPLETE', async function(assert) {
+  let component = this.subject();
+  const postAJobRequest = this.stub(component.actions, 'postAJobRequest')
+    .returns(new Promise((resolve) => { return resolve(); }));
+  const postingAJobComplete = this.stub(component.actions, 'postingAJobComplete');
+  await component.actions.postAJob();
+  assert.equal(postAJobRequest.calledOnce, true, 'It does a post a job request');
+  assert.equal(postingAJobComplete.calledOnce, true, 'It dispatches POSTING_A_JOB_COMPLETE');
+});
+
+test('postAJob dispatches POSTING_A_JOB -> POSTING_A_JOB_ERROR', async function(assert) {
+  let component = this.subject();
+  const postAJobRequest = this.stub(component.actions, 'postAJobRequest')
+    .returns(new Promise((resolve, reject) => { return reject(['error']); }));
+  const postingAJobError = this.stub(component.actions, 'postingAJobError');
+  await component.actions.postAJob();
+  assert.equal(postAJobRequest.calledOnce, true, 'It does a post a job request');
+  assert.equal(postingAJobError.calledOnce, true, 'It dispatches POSTING_A_JOB_ERROR');
 });
