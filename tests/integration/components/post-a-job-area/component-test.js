@@ -1,6 +1,7 @@
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 import testSelector from 'ember-test-selectors';
+import _ from 'lodash';
 
 moduleForComponent('post-a-job-area', 'Integration | Component | post a job area', {
   integration: true
@@ -288,4 +289,22 @@ test('displays a disabled submit button', function(assert) {
   this.render(hbs`{{post-a-job-area disabled=disabled}}`);
   const submitButton = this.$(testSelector('submit-button-disabled'));
   assert.equal(submitButton.length, 1, 'Does display submit button');
+});
+
+test('displays a loading submit button', function(assert) {
+  this.set('loading', true);
+  this.render(hbs`{{post-a-job-area loading=loading}}`);
+  const submitButton = this.$(testSelector('submit-button-loading'));
+  assert.equal(submitButton.length, 1, 'Does display loading submit button');
+});
+
+// SERVER ERRORS
+test('displays errors returned from the server', function(assert) {
+  const error1 = 'Server side validations errors.';
+  const error2 = 'Generic please try again errors etc.';
+  this.set('errors', [error1, error2]);
+  this.render(hbs`{{post-a-job-area errors=errors}}`);
+  const errorsArea = this.$(testSelector('general-errors-area'));
+  assert.equal(_.includes(errorsArea.text(), error1), true, 'Does contain first errors text');
+  assert.equal(_.includes(errorsArea.text(), error2), true, 'Does contain second errors text');
 });

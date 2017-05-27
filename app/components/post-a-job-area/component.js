@@ -77,9 +77,21 @@ export default Ember.Component.extend({
         {{/if}}
       </div>
 
+      {{#if errors}}
+        <div class="general-errors-area" data-test-general-errors-area>
+          {{#each errors as |error|}}
+            <div class="general-error">
+              {{error}}
+            </div>
+          {{/each}}
+        </div>
+      {{/if}}
+
       <div class="submit-area">
         {{#if disabled}}
           <input class="nav-button nav-button-dark post-a-job-button disabled" type="submit" name="submit" value="Post a Job" data-test-submit-button-disabled disabled />
+        {{else if loading}}
+          <input class="nav-button nav-button-dark post-a-job-button loading" type="submit" name="submit" value="Posting..." data-test-submit-button-loading />
         {{else}}
           <input class="nav-button nav-button-dark post-a-job-button" type="submit" name="submit" value="Post a Job" data-test-submit-button />
         {{/if}}
