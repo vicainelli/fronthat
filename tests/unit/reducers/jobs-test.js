@@ -11,6 +11,7 @@ module('Unit | Reducers | jobs');
 const initialState = {
   all: [],
   fetching: false,
+  posting: false,
   postAJobForm: {
     name: {
       value: '',
@@ -306,5 +307,43 @@ test('UPDATE_POST_A_JOB_FORM action updates description value errors', function(
   };
   const newPostAJobForm = assign({}, initialState.postAJobForm, postAJobForm);
   const expected = assign({}, initialState, {postAJobForm: newPostAJobForm});
+  assert.deepEqual(result, expected);
+});
+
+test('POSTING_A_JOB action sets a true flag', function(assert) {
+  const result = reducer.jobs(initialState, {
+    type: 'POSTING_A_JOB',
+  });
+  const expected = assign({}, initialState, {posting: true});
+  assert.deepEqual(result, expected);
+});
+
+test('POSTING_A_JOB_COMPLETE complete action sets a false flag', function(assert) {
+  const previous = reducer.jobs(initialState, {
+    type: 'POSTING_A_JOB',
+  });
+
+  deepFreeze(previous);
+
+  const result = reducer.jobs(previous, {
+    type: 'POSTING_A_JOB_COMPLETE',
+  });
+
+  const expected = assign({}, previous, {posting: false});
+  assert.deepEqual(result, expected);
+});
+
+test('POSTING_A_JOB_ERROR error action sets an error flag', function(assert) {
+  const previous = reducer.jobs(initialState, {
+    type: 'POSTING_A_JOB',
+  });
+
+  deepFreeze(previous);
+
+  const result = reducer.jobs(previous, {
+    type: 'POSTING_A_JOB_ERROR',
+  });
+
+  const expected = assign({}, previous, {posting: 'error'});
   assert.deepEqual(result, expected);
 });

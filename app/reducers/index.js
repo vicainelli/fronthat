@@ -7,6 +7,7 @@ const { assign } = Ember;
 const initialState = {
   all: [],
   fetching: false,
+  posting: false,
   postAJobForm: {
     name: {
       value: '',
@@ -54,6 +55,17 @@ const jobs = ((state, action) => {
     return assign({}, state, {fetching: 'error'});
   }
 
+  if (action.type === 'POSTING_A_JOB') {
+    return assign({}, state, {posting: true});
+  }
+
+  if (action.type === 'POSTING_A_JOB_COMPLETE') {
+    return assign({}, state, {posting: false});
+  }
+
+  if (action.type === 'POSTING_A_JOB_ERROR') {
+    return assign({}, state, {posting: 'error'});
+  }
 
   if (action.type === 'UPDATE_POST_A_JOB_FORM') {
     const field = action.data.field;
