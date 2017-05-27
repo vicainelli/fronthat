@@ -1,6 +1,8 @@
 import Ember from 'ember';
 import connect from 'ember-redux/components/connect';
 import hbs from 'htmlbars-inline-precompile';
+import fetch from 'fetch';
+import ENV from 'fronthat/config/environment';
 const { Promise } = Ember.RSVP;
 
 const stateToComputed = (state) => {
@@ -49,19 +51,34 @@ const dispatchToActions = (dispatch) => {
       dispatch({type: 'UPDATE_POST_A_JOB_FORM', data: {field: 'description', value: description}});
     },
     postAJobRequest: () => {
-      return new Promise((resolve, /*reject*/) => {
-        return resolve();
+      return new Promise((resolve, reject) => {
+        const jobsFetched = (response) => {
+          if (response.status === 200) {
+            return resolve();
+          }
+          return reject('failed to get a response');
+        };
+        const fetchOptions = {
+          method: "POST",
+          body: JSON.stringify({}),
+        };
+        fetch(`${ENV.apiURL}/jobs`, fetchOptions)
+          .then(jobsFetched, reject)
       });
     },
     postAJob: function() {
-      this.postingAJob();
-      this.postAJobRequest()
-        .then(this.postingAJobComplete, this.postingAJobError);
+      console.log('before this is');
+      console.log('this is', this.get('postAJobSuccess')());
+      console.log('after this is');
+      this.actions.postingAJob();
+      this.actions.postAJobRequest()
+        .then(this.actions.postingAJobComplete.bind(this), this.actions.postingAJobError);
     },
     postingAJob: () => {
       dispatch({type: 'POSTING_A_JOB'});
     },
     postingAJobComplete: () => {
+      console.log('complete');
       dispatch({type: 'POSTING_A_JOB_COMPLETE'});
     },
     postingAJobError: (errors) => {

@@ -5,6 +5,7 @@ import testSelector from 'ember-test-selectors';
 moduleForAcceptance('Acceptance | post a job');
 
 test('filling in post a job form', async function(assert) {
+  localStorage.removeItem('reduxPersist:jobs')
   await visit('/post-a-job');
   await fillIn('#name-input', 'Russ Hanneman');
   await fillIn('#email-input', 'russ@siliconvalleyhbo.com');
@@ -29,7 +30,11 @@ test('filling in post a job form', async function(assert) {
   const descriptionInputErrors = await find(testSelector('description-input-errors'));
   assert.equal(descriptionInputErrors.length, 0, 'It does not have description input errors');
   const submitButton = await find(testSelector('submit-button'));
-  assert.equal(submitButton.attr('disabled'), undefined, 'Post a Job button is enabled');
+  assert.equal(submitButton.length, 1, 'Post a Job button is enabled');
+  await click(submitButton);
+  // const loadingSubmitButton = await find(testSelector('submit-button-loading'));
+  // assert.equal(loadingSubmitButton.length, 1, 'Post a Job button is loading');
+  assert.equal(currentURL(), 'post-a-job/success');
 });
 
 test('filling in post a job form with errors', async function(assert) {

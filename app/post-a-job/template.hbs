@@ -1,4 +1,14 @@
-{{#post-a-job-area-container as |name updateName email updateEmail title updateTitle url updateURL description updateDescription disabled|}}
+{{#post-a-job-area-container postAJobSuccess=(route-action 'postAJobSuccess') as
+  |name updateName
+  email updateEmail
+  title updateTitle
+  url updateURL
+  description updateDescription
+  disabled
+  errors
+  loading
+  postAJob|
+}}
   {{post-a-job-area
     name=name
     updateName=updateName
@@ -11,5 +21,8 @@
     description=description
     updateDescription=updateDescription
     disabled=disabled
+    errors=errors
+    loading=loading
+    postAJob=postAJob
   }}
 {{/post-a-job-area-container}}

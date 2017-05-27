@@ -11,4 +11,8 @@ export default function() {
     return jobs.all;
   });
 
+  this.post('/jobs', () => {
+    return {};
+  }, 200);
+
 }
