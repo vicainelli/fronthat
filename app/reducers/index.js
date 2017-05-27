@@ -64,7 +64,9 @@ const jobs = ((state, action) => {
   }
 
   if (action.type === 'POSTING_A_JOB_ERROR') {
-    return assign({}, state, {posting: 'error'});
+    const postAJobForm = {errors: action.errors};
+    const newPostAJobForm = assign({}, state.postAJobForm, postAJobForm);
+    return assign({}, state, {postAJobForm: newPostAJobForm});
   }
 
   if (action.type === 'UPDATE_POST_A_JOB_FORM') {
@@ -84,3 +86,4 @@ const jobs = ((state, action) => {
 export default {
   jobs
 }
+

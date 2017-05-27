@@ -333,17 +333,25 @@ test('POSTING_A_JOB_COMPLETE complete action sets a false flag', function(assert
   assert.deepEqual(result, expected);
 });
 
-test('POSTING_A_JOB_ERROR error action sets an error flag', function(assert) {
+test('POSTING_A_JOB_ERROR error action sets postAJobForm errors', function(assert) {
   const previous = reducer.jobs(initialState, {
     type: 'POSTING_A_JOB',
   });
 
   deepFreeze(previous);
 
+  const error1 = 'Email invalid';
+  const error2 = 'Something else';
+
   const result = reducer.jobs(previous, {
     type: 'POSTING_A_JOB_ERROR',
+    errors: [error1, error2],
   });
 
-  const expected = assign({}, previous, {posting: 'error'});
+  const postAJobForm = {
+    errors: [error1, error2]
+  };
+  const newPostAJobForm = assign({}, initialState.postAJobForm, postAJobForm);
+  const expected = assign({}, previous, {postAJobForm: newPostAJobForm});
   assert.deepEqual(result, expected);
 });
