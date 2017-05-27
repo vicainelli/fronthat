@@ -202,7 +202,8 @@
           align-items: center
       }
       .about-page,
-      .job-details {
+      .job-details,
+      .post-a-job-area {
           margin: 1.25rem auto;
           width: 66.66%;
           box-shadow: 0 0 1.875rem #E0E0E0
@@ -243,6 +244,51 @@
       }
       .job-load-error-text {
           font-size: 1.25rem
+      }
+      .input.container {
+        padding: 1.5rem;
+        padding-bottom: 0;
+      }
+      .input.container label {
+        display: block;
+        width: 100%;
+      }
+      .input-and-error {
+        display: flex;
+        align-items: center;
+      }
+      .input.container input, .input.container textarea {
+        width: 50%;
+        padding: 0.5rem;
+        margin-top: 0.5rem;
+        box-sizing: border-box;
+        font-size: 0.85rem;
+        display: inline-block;
+      }
+      .input.container input {
+        border: none;
+        border-bottom: 0.0625rem solid #212121;
+      }
+      .input.container textarea {
+        background-color: #FAFAFA;
+        border: none;
+        resize: none;
+        height: 15rem;
+      }
+      .input.container span {
+        display: inline-block;
+        width: 40%;
+        padding: 0 1.5rem;
+        font-size: 0.85rem;
+        color: #757575;
+        box-sizing: border-box;
+      }
+      .submit-area .nav-button {
+        background-color: #212121;
+        padding: 0.6rem 1rem
+      }
+      .submit-area {
+        padding: 1.5rem
       }
       @keyframes fadeIn {
           from {
@@ -406,7 +452,8 @@
               margin-right: .5rem
           }
           .about-page,
-          .job-details {
+          .job-details,
+          .post-a-job-area {
               margin: 0;
               width: 100%;
               border-radius: .125rem
