@@ -49,7 +49,7 @@
     "ember-cli-sri": "^2.1.0",
     "ember-cli-uglify": "^1.2.0",
     "ember-export-application-global": "^2.0.0",
-    "ember-fetch": "^1.5.0",
+    "ember-fetch": "^2.0.0",
     "ember-json-stringify-safe-shim": "^1.0.0",
     "ember-load-initializers": "^1.0.0",
     "ember-lodash-shim": "^2.0.0",
