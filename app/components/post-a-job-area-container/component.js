@@ -22,8 +22,7 @@ const stateToComputed = (state) => {
       isReadyToSubmit(description));
   };
   const errors = () => {
-    if (state.jobs.posting) { return []; }
-    return state.jobs.postAJobForm.errors;
+    return state.jobs.posting ? [] : state.jobs.postAJobForm.errors;
   };
   return {
     name, email, title, url, description,
@@ -56,7 +55,7 @@ const dispatchToActions = (dispatch) => {
           if (response.status === 200) {
             return resolve();
           }
-          return reject('failed to get a response');
+          return reject(['Sorry, something went wrong on the server side.']);
         };
         const fetchOptions = {
           method: "POST",
@@ -67,18 +66,18 @@ const dispatchToActions = (dispatch) => {
       });
     },
     postAJob: function() {
-      console.log('before this is');
-      console.log('this is', this.get('postAJobSuccess')());
-      console.log('after this is');
       this.actions.postingAJob();
+      const componentScope = this;
       this.actions.postAJobRequest()
-        .then(this.actions.postingAJobComplete.bind(this), this.actions.postingAJobError);
+        .then(() => {
+          componentScope.get('postAJobSuccess')();
+          this.actions.postingAJobComplete();
+        }, this.actions.postingAJobError);
     },
     postingAJob: () => {
       dispatch({type: 'POSTING_A_JOB'});
     },
     postingAJobComplete: () => {
-      console.log('complete');
       dispatch({type: 'POSTING_A_JOB_COMPLETE'});
     },
     postingAJobError: (errors) => {

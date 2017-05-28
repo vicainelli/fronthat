@@ -350,9 +350,9 @@ test('POSTING_A_JOB_ERROR error action sets postAJobForm errors', function(asser
   });
 
   const postAJobForm = {
-    errors: [error1, error2]
+    errors: [error1, error2],
   };
   const newPostAJobForm = assign({}, initialState.postAJobForm, postAJobForm);
-  const expected = assign({}, previous, {postAJobForm: newPostAJobForm});
+  const expected = assign({}, previous, {postAJobForm: newPostAJobForm, posting: false});
   assert.deepEqual(result, expected);
 });

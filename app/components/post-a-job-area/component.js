@@ -93,7 +93,7 @@ export default Ember.Component.extend({
         {{#if errors}}
           <div class="general-errors-area" data-test-general-errors-area>
             {{#each errors as |error|}}
-              <div class="general-error">
+              <div class="general-error" data-test-general-error>
                 {{error}}
               </div>
             {{/each}}

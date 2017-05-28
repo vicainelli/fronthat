@@ -59,10 +59,11 @@ test('it does not show errors while loading', function(assert) {
 
 test('postAJob dispatches POSTING_A_JOB -> POSTING_A_JOB_COMPLETE', async function(assert) {
   let component = this.subject();
+  component.set('postAJobSuccess', () => {});
   const postAJobRequest = this.stub(component.actions, 'postAJobRequest')
     .returns(new Promise((resolve) => { return resolve(); }));
   const postingAJobComplete = this.stub(component.actions, 'postingAJobComplete');
-  await component.actions.postAJob();
+  await component.actions.postAJob.bind(component)();
   assert.equal(postAJobRequest.calledOnce, true, 'It does a post a job request');
   assert.equal(postingAJobComplete.calledOnce, true, 'It dispatches POSTING_A_JOB_COMPLETE');
 });
@@ -72,7 +73,7 @@ test('postAJob dispatches POSTING_A_JOB -> POSTING_A_JOB_ERROR', async function(
   const postAJobRequest = this.stub(component.actions, 'postAJobRequest')
     .returns(new Promise((resolve, reject) => { return reject(['error']); }));
   const postingAJobError = this.stub(component.actions, 'postingAJobError');
-  await component.actions.postAJob();
+  await component.actions.postAJob.bind(component)();
   assert.equal(postAJobRequest.calledOnce, true, 'It does a post a job request');
   assert.equal(postingAJobError.calledOnce, true, 'It dispatches POSTING_A_JOB_ERROR');
 });

@@ -1,6 +1,7 @@
 module.exports = {
   "globals": {
-    "waitFor": true
+    "waitFor": true,
+    "server": true
   },
   env: {
     embertest: true
