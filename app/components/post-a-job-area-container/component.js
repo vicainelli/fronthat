@@ -49,7 +49,7 @@ const dispatchToActions = (dispatch) => {
     updateDescription: (description) => {
       dispatch({type: 'UPDATE_POST_A_JOB_FORM', data: {field: 'description', value: description}});
     },
-    postAJobRequest: () => {
+    postAJobRequest: (requestBody) => {
       return new Promise((resolve, reject) => {
         const jobsFetched = (response) => {
           if (response.status === 200) {
@@ -59,7 +59,7 @@ const dispatchToActions = (dispatch) => {
         };
         const fetchOptions = {
           method: "POST",
-          body: JSON.stringify({}),
+          body: JSON.stringify(requestBody),
         };
         fetch(`${ENV.apiURL}/jobs`, fetchOptions)
           .then(jobsFetched, reject)
@@ -68,7 +68,14 @@ const dispatchToActions = (dispatch) => {
     postAJob: function() {
       this.actions.postingAJob();
       const componentScope = this;
-      this.actions.postAJobRequest()
+      const requestBody = {
+        name: this.get('name.value'),
+        title: this.get('title.value'),
+        url: this.get('url.value'),
+        email: this.get('email.value'),
+        description: this.get('description.value'),
+      };
+      this.actions.postAJobRequest(requestBody)
         .then(() => {
           componentScope.get('postAJobSuccess')();
           this.actions.postingAJobComplete();

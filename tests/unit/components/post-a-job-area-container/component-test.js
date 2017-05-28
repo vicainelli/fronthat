@@ -1,11 +1,19 @@
+import startMirage from '../../../helpers/setup-mirage-for-integration';
 import { moduleForComponent } from 'ember-qunit';
 import test from 'ember-sinon-qunit/test-support/test';
 import Ember from 'ember';
 const { Promise } = Ember.RSVP;
+import _ from 'lodash';
 
 moduleForComponent('post-a-job-area-container', 'Unit | Component | post a job area container', {
   needs: ['service:redux'],
-  unit: true
+  unit: true,
+  beforeEach() {
+    startMirage(this.container);
+  },
+  afterEach() {
+    window.server.shutdown();
+  }
 });
 
 test('it returns true for disabled when name, title, url, description & email empty', function(assert) {
@@ -76,4 +84,24 @@ test('postAJob dispatches POSTING_A_JOB -> POSTING_A_JOB_ERROR', async function(
   await component.actions.postAJob.bind(component)();
   assert.equal(postAJobRequest.calledOnce, true, 'It does a post a job request');
   assert.equal(postingAJobError.calledOnce, true, 'It dispatches POSTING_A_JOB_ERROR');
+});
+
+test('postAJobRequest fetch body includes name, title, email, url & description', function(assert) {
+  let component = this.subject();
+  const requestBody = {
+    name: "Russ",
+    email: "email@test.com",
+    title: "This is A Title",
+    url: "https://fronthat.com",
+    description: "This is A Description",
+  };
+  server.post('/jobs', (db, request) => {
+    assert.equal(_.includes(request.requestBody, requestBody.name), true, 'POST request contains name');
+    assert.equal(_.includes(request.requestBody, requestBody.email), true, 'POST request contains email');
+    assert.equal(_.includes(request.requestBody, requestBody.title), true, 'POST request contains title');
+    assert.equal(_.includes(request.requestBody, requestBody.url), true, 'POST request contains url');
+    assert.equal(_.includes(request.requestBody, requestBody.description), true, 'POST request contains description');
+    return {};
+  }, 200);
+  component.actions.postAJobRequest(requestBody);
 });
