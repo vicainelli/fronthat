@@ -249,21 +249,29 @@
         padding: 1.5rem;
         padding-bottom: 0;
       }
-      .input.container label {
+      .input.container, .general-errors-area, .submit-area {
+        width: 75%;
+        max-width: 45rem;
         display: block;
-        width: 100%;
+        margin: 0 auto;
+        box-sizing: border-box;
       }
-      .input-and-error {
+      .input.container label {
+      }
+      .label-and-error {
         display: flex;
-        align-items: center;
+        justify-content: space-between;
       }
       .input.container input, .input.container textarea {
-        width: 50%;
+        width: 100%;
         padding: 0.5rem;
         margin-top: 0.5rem;
         box-sizing: border-box;
         font-size: 0.85rem;
         display: inline-block;
+      }
+      #title-input {
+        font-size: 1.25rem;
       }
       .input.container input {
         border: none;
@@ -273,15 +281,19 @@
         background-color: #FAFAFA;
         border: none;
         resize: none;
-        height: 15rem;
+        height: 25rem;
       }
       .input.container span {
         display: inline-block;
-        width: 40%;
-        padding: 0 1.5rem;
         font-size: 0.85rem;
         color: #757575;
         box-sizing: border-box;
+        color: #E57373;
+        margin-left: 2rem;
+        text-align: right;
+      }
+      .input.container .input-ok {
+        color: #9CCC65;
       }
       .submit-area .nav-button {
         background-color: #212121;
@@ -444,6 +456,9 @@
             padding-left: 1.25rem;
             padding-bottom: 1rem;
             justify-content: flex-start;
+          }
+          .input.container, .general-errors-area, .submit-area {
+            width: 100%;
           }
           .fronthat-logo {
               width: 7.5rem
