@@ -2,11 +2,10 @@ import Ember from 'ember';
 import hbs from 'htmlbars-inline-precompile';
 
 export default Ember.Component.extend({
-
   layout: hbs`
     <div data-test-post-a-job-area-container class="post-a-job-area">
 
-      <form>
+      <form {{action postAJob on='submit'}}>
         <div class="input container" data-test-title-input-container>
           <div class="label-and-error">
             <label for="title-input" data-test-title-input-label>Title</label>
@@ -58,7 +57,7 @@ export default Ember.Component.extend({
 
         <div class="input container" data-test-name-input-container>
           <div class="label-and-error">
-          <label for="name-input" data-test-name-input-label>Name</label>
+            <label for="name-input" data-test-name-input-label>Name</label>
             {{#if name.errors}}
               <span data-test-name-input-errors>
                 {{name.errors}}
@@ -75,7 +74,7 @@ export default Ember.Component.extend({
 
         <div class="input container" data-test-email-input-container>
           <div class="label-and-error">
-          <label for="email-input" data-test-email-input-label>Email</label>
+            <label for="email-input" data-test-email-input-label>Email</label>
             {{#if email.errors}}
               <span data-test-email-input-errors>
                 {{email.errors}}
@@ -94,7 +93,7 @@ export default Ember.Component.extend({
         {{#if errors}}
           <div class="general-errors-area" data-test-general-errors-area>
             {{#each errors as |error|}}
-              <div class="general-error">
+              <div class="general-error" data-test-general-error>
                 {{error}}
               </div>
             {{/each}}
@@ -105,7 +104,7 @@ export default Ember.Component.extend({
           {{#if disabled}}
             <input class="nav-button nav-button-dark post-a-job-button disabled" type="submit" name="submit" value="Post a Job" data-test-submit-button-disabled disabled />
           {{else if loading}}
-            <input class="nav-button nav-button-dark post-a-job-button loading" type="submit" name="submit" value="Posting..." data-test-submit-button-loading />
+            <input class="nav-button nav-button-dark post-a-job-button loading" type="submit" name="submit" value="Posting..." data-test-submit-button-loading disabled />
           {{else}}
             <input class="nav-button nav-button-dark post-a-job-button" type="submit" name="submit" value="Post a Job" data-test-submit-button />
           {{/if}}
