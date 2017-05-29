@@ -19,8 +19,8 @@ const postAJobFormValidator = {
     return [];
   },
   title: (title) => {
-    if (title.length < 20) {
-      return ['Title must be at least 20 characters.'];
+    if (title.length < 10) {
+      return ['Title must be at least 10 characters.'];
     }
     if (title.length > 255) {
       return ['Title is too long. Maximum 255 characters allowed.'];
