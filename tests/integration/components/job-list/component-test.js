@@ -1,4 +1,4 @@
-import { moduleForComponent, test, skip } from 'ember-qunit';
+import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 import jobs from 'fronthat/mirage/json/jobs';
 import _ from 'lodash';
@@ -17,16 +17,6 @@ test('it does not render anything given empty jobs', function(assert) {
   assert.equal(this.$().text().trim(), '');
 });
 
-test('it does render at least 5 jobs given 200 jobs', function(assert) {
-  this.set('jobs', jobs.all.data);
-  this.render(hbs`{{job-list jobs=jobs}}`);
-
-  const greaterThanTwenty = () => {
-    return this.$('.job-item').length >= 5;
-  };
-  assert.equal(greaterThanTwenty(), true);
-});
-
 test('it does render everything in FastBoot mode', function(assert) {
   this.set('jobs', jobs.all.data);
   this.set('fastboot', fastbootEnabled);
@@ -43,26 +33,6 @@ test('it sorts jobs by timestamp in FastBoot mode', function(assert) {
 
   assert.equal(_.includes(this.$('.job-item').last().text(), '15 May'), false);
 });
-
-skip('it sorts renders everything in normal mode with 200 buffer size', function(assert) {
-
-  this.set('jobs', jobs.all.data);
-  this.set('bufferSize', 200)
-  this.render(hbs`{{job-list jobs=jobs bufferSize=bufferSize}}`);
-
-  assert.equal(this.$('.job-item').length, 200);
-});
-
-skip('it filters by timestamp in normal mode', function(assert) {
-
-  this.set('jobs', jobs.all.data);
-  this.set('bufferSize', 200)
-  this.render(hbs`{{job-list jobs=jobs bufferSize=bufferSize}}`);
-
-  assert.equal(this.$('.job-item').length, 200);
-  assert.equal(_.includes(this.$('.job-item').last().text(), '15 May'), false);
-});
-
 
 test('it shows loading when fetching new', function(assert) {
 

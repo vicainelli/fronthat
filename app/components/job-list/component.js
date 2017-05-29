@@ -5,7 +5,6 @@ const { computed } = Ember;
 export default Ember.Component.extend({
   fastboot: Ember.inject.service(),
   isFastBoot: Ember.computed.reads('fastboot.isFastBoot'),
-  redux: Ember.inject.service(),
 
   sortedJobs: computed('jobs', function() {
     const byTimestamp = (x, y) => {

@@ -8,6 +8,7 @@ test('when visiting detail route and then index', async function(assert) {
   await visit('jobs/15/05/2017/senior-interactive-designer');
   assert.equal(currentURL(), 'jobs/15/05/2017/senior-interactive-designer');
   await visit('/');
+  await waitFor(500);
   const jobs = find('.job-item');
   const greaterThanOne = (jobs) => {
     return jobs.length >= 5;
