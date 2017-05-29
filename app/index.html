@@ -203,10 +203,11 @@
       }
       .about-page,
       .job-details,
-      .post-a-job-area {
-          margin: 1.25rem auto;
+      .post-a-job-area,
+      .post-a-job-success {
+          margin: 2rem auto;
           width: 66.66%;
-          box-shadow: 0 0 1.875rem #E0E0E0
+          box-shadow: 0 0 1.875rem #E0E0E0;
       }
       .job-load-error-text,
       .loading-indicator {
@@ -245,17 +246,18 @@
       .job-load-error-text {
           font-size: 1.25rem
       }
-      .input.container {
+      .input.container,
+      .general-errors-area {
         padding: 1.5rem;
         padding-bottom: 0;
       }
-      .input.container, .general-errors-area, .submit-area {
+      .input.container,
+      .general-errors-area,
+      .submit-area {
         width: 75%;
         display: block;
         margin: 0 auto;
         box-sizing: border-box;
-      }
-      .input.container label {
       }
       .label-and-error {
         display: flex;
@@ -273,6 +275,7 @@
         font-size: 1.25rem;
       }
       .input.container input {
+        border-radius: 0;
         border: none;
         border-bottom: 0.0625rem solid #212121;
       }
@@ -285,21 +288,28 @@
       .input.container span {
         display: inline-block;
         font-size: 0.85rem;
-        color: #757575;
         box-sizing: border-box;
         color: #E57373;
         margin-left: 2rem;
         text-align: right;
       }
-      .input.container .input-ok {
-        color: #9CCC65;
-      }
-      .submit-area .nav-button {
+      .submit-area .post-a-job-button {
         background-color: #212121;
-        padding: 0.6rem 1rem
+        padding: 0.6rem 1rem;
+        border-radius: 0;
+      }
+      .submit-area .post-a-job-button.disabled {
+        background-color: #BDBDBD;
+        cursor: not-allowed;
       }
       .submit-area {
         padding: 1.5rem
+      }
+      .general-error {
+        color: #E57373;
+      }
+      .post-a-job-success p {
+        padding: 1.5rem;
       }
       @keyframes fadeIn {
           from {
@@ -445,19 +455,16 @@
           h2 {
               font-size: .75rem
           }
-          vertical-collection, .vertical-collection, .post-a-job a {
+          vertical-collection, .vertical-collection {
               box-shadow: none;
               margin: 0;
               width: 100%
           }
-          .post-a-job a {
-            border-bottom: 0.0625rem solid #BDBDBD;
-            padding-left: 1.25rem;
-            padding-bottom: 1rem;
-            justify-content: flex-start;
-          }
           .input.container, .general-errors-area, .submit-area {
             width: 100%;
+          }
+          .input.container textarea {
+            height: 30vh;
           }
           .fronthat-logo {
               width: 7.5rem
