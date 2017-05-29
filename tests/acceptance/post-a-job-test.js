@@ -6,7 +6,7 @@ moduleForAcceptance('Acceptance | post a job');
 
 const generateDescription = () => {
   let description = '';
-  for (let i=0; i < 255; ++i) {
+  for (let i=0; i < 70; ++i) {
     description += 'A';
   }
   return description;
@@ -42,7 +42,7 @@ const fillInValidForm = async () => {
   await visit('/post-a-job');
   await fillIn('#name-input', 'Russ Hanneman');
   await fillIn('#email-input', 'russ@siliconvalleyhbo.com');
-  await fillIn('#title-input', 'This is some Title and More');
+  await fillIn('#title-input', '10character');
   await fillIn('#url-input', 'https://google.com');
   await fillIn('#description-input', generateDescription());
 };
@@ -52,7 +52,7 @@ const fillInInvalidForm = async () => {
   await visit('/post-a-job');
   await fillIn('#name-input', 'AS');
   await fillIn('#email-input', 'invalid.email');
-  await fillIn('#title-input', 'AAA');
+  await fillIn('#title-input', 'AAAAAAAAA');
   await fillIn('#url-input', 'invalidurl');
   await fillIn('#description-input', 'Too short description');
 };

@@ -19,8 +19,8 @@ const postAJobFormValidator = {
     return [];
   },
   title: (title) => {
-    if (title.length < 20) {
-      return ['Title must be at least 20 characters.'];
+    if (title.length < 10) {
+      return ['Title must be at least 10 characters.'];
     }
     if (title.length > 255) {
       return ['Title is too long. Maximum 255 characters allowed.'];
@@ -73,8 +73,8 @@ const postAJobFormValidator = {
     return [];
   },
   description: (description) => {
-    if (description.length < 255) {
-      return ['Description must be at least 255 characters.'];
+    if (description.length < 70) {
+      return ['Description must be at least 70 characters.'];
     }
     if (description.length > 15000) {
       return ['Description is too long. Maximum 15000 characters allowed.'];

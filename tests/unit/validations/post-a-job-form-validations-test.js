@@ -63,7 +63,7 @@ test('it returns empty array upon valid description', function(assert) {
 
 test('it returns array with 1 error upon too short description', function(assert) {
   let description = '';
-  for (let i = 0; i < 254; i++) {
+  for (let i = 0; i < 69; i++) {
     description = description + 'A';
   }
   assert.deepEqual(postAJobFormValidator['description'](description).length, 1, 'It does return errors for too short description');

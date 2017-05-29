@@ -227,7 +227,7 @@ test('UPDATE_POST_A_JOB_FORM action updates title value errors', function(assert
   const postAJobForm = {
     title: {
       value: 'INV',
-      errors: ['Title must be at least 20 characters.'],
+      errors: ['Title must be at least 10 characters.'],
     }
   };
   const newPostAJobForm = assign({}, initialState.postAJobForm, postAJobForm);
