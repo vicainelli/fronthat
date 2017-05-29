@@ -61,7 +61,7 @@ const jobs = ((state, action) => {
   }
 
   if (action.type === 'POSTING_A_JOB_COMPLETE') {
-    return assign({}, state, {posting: false});
+    return assign({}, state, {postAJobForm: initialState.postAJobForm, posting: false});
   }
 
   if (action.type === 'POSTING_A_JOB_ERROR') {

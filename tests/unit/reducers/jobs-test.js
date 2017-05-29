@@ -334,6 +334,21 @@ test('POSTING_A_JOB_COMPLETE complete action sets a false flag', function(assert
   assert.deepEqual(result, expected);
 });
 
+test('POSTING_A_JOB_COMPLETE complete sets form to initial state', function(assert) {
+  const previous = reducer.jobs(initialState, {
+    type: 'UPDATE_POST_A_JOB_FORM',
+    data: {field: 'name', value: 'Peter Gregory'}
+  });
+
+  deepFreeze(previous);
+
+  const result = reducer.jobs(previous, {
+    type: 'POSTING_A_JOB_COMPLETE',
+  });
+
+  assert.deepEqual(result, initialState);
+});
+
 test('POSTING_A_JOB_ERROR error action sets postAJobForm errors', function(assert) {
   const previous = reducer.jobs(initialState, {
     type: 'POSTING_A_JOB',

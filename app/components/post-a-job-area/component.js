@@ -87,7 +87,7 @@ export default Ember.Component.extend({
             id="email-input"
             update=updateEmail
             type='email'
-            placeholder="Email for receipt and confirmation email"
+            placeholder="Email for confirmation email"
           }}
         </div>
 
