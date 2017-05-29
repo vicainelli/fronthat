@@ -6,7 +6,7 @@ moduleForAcceptance('Acceptance | post a job');
 
 const generateDescription = () => {
   let description = '';
-  for (let i=0; i < 255; ++i) {
+  for (let i=0; i < 70; ++i) {
     description += 'A';
   }
   return description;
