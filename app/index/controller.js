@@ -5,7 +5,7 @@ export default Ember.Controller.extend({
   jobFetchStatus: Ember.computed.alias('applicationController.jobFetchStatus'),
   actions: {
     firstVisibleChanged(object, index) {
-      this.set('scrollPosition', index);
+      this.set('scrollPosition', index.toString());
     }
   },
 });
