@@ -11,6 +11,8 @@ Router.map(function() {
   this.route('loading');
   this.route('about');
   this.route('not-found');
+  this.route('post-a-job');
+  this.route('post-a-job-success', { path: '/post-a-job/success' });
 });
 
 export default Router;

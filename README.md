@@ -4,13 +4,30 @@
 
 This repository contains front end application for [fronthat.com](https://fronthat.com).
 
+#### Overview
+
+##### Offline First Support
+* [ember-service-worker](https://github.com/DockYard/ember-service-worker) + [ember-service-worker-asset-cache](https://github.com/DockYard/ember-service-worker-asset-cache) + [ember-service-worker-index](https://github.com/DockYard/ember-service-worker-index)
+* [ember-redux](https://github.com/ember-redux/ember-redux) + [ember-redux-offline](https://github.com/ember-redux/ember-redux-offline-shim)
+* [https://github.com/san650/ember-web-app](https://github.com/san650/ember-web-app) to generate Web App Manifest
+
+##### SEO optimization / support:
+* [ember-cli-fastboot](https://github.com/ember-fastboot/ember-cli-fastboot) for server side rendering
+* [ember-page-title](https://github.com/tim-evans/ember-page-title)
+* [ember-cli-meta-tags](https://github.com/ronco/ember-cli-meta-tags)
+
+##### Testing
+* [ember-cli-mirage](http://www.ember-cli-mirage.com/) for mocking server requests during development / testing
+* [ember-test-selectors](https://github.com/simplabs/ember-test-selectors)
+* [ember-sinon](https://github.com/csantero/ember-sinon) + [ember-sinon-qunit](https://github.com/elwayman02/ember-sinon-qunit)
+
 ## Prerequisites
 
 You will need the following things properly installed on your computer.
 
 * [Git](https://git-scm.com/)
 * [Node.js](https://nodejs.org/) (version >= 4 with NPM)
-* [Bower](https://bower.io/)
+* [Yarn](https://yarnpkg.com/en/)
 * [Ember CLI](https://ember-cli.com/)
 * [PhantomJS](http://phantomjs.org/)
 
@@ -18,18 +35,12 @@ You will need the following things properly installed on your computer.
 
 * `git clone git@github.com:erkarl/fronthat.git`
 * `cd fronthat`
-* `npm install`
-* `bower install`
+* `yarn`
 
 ## Running / Development
 
 * `ember serve`
 * [http://localhost:4200](http://localhost:4200).
-
-## Development with Server Side Rendering (FastBoot)
-
-* `ember serve`
-* [http://localhost:3000](http://localhost:3000).
 
 ### Running Tests
 
