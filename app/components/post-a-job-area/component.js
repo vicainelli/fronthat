@@ -19,6 +19,7 @@ export default Ember.Component.extend({
             title.value
             id="title-input"
             update=updateTitle
+            placeholder="Job Title"
           }}
         </div>
 
@@ -68,7 +69,7 @@ export default Ember.Component.extend({
             name.value
             id="name-input"
             update=updateName
-            placeholder="Enter your or company name"
+            placeholder="Personal or company name"
           }}
         </div>
 
@@ -86,7 +87,7 @@ export default Ember.Component.extend({
             id="email-input"
             update=updateEmail
             type='email'
-            placeholder="Enter email for receipt and confirmation email"
+            placeholder="Email for receipt and confirmation email"
           }}
         </div>
 
