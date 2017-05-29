@@ -36,7 +36,7 @@ export default Ember.Component.extend({
             url.value
             id="url-input"
             update=updateURL
-            placeholder="URL to apply: https://yourcompany.com/careers/apply"
+            placeholder="https://yourcompany.com/careers/apply"
           }}
         </div>
 
