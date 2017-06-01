@@ -5,21 +5,16 @@ moduleForComponent('search-area', 'Integration | Component | search area', {
   integration: true
 });
 
-test('it renders', function(assert) {
+test('it triggers searchChanged action with designer parameter', function(assert) {
+  const actualSearchQuery = 'designer';
+  const searchChanged = (searchQuery) => {
+    assert.equal(searchQuery, actualSearchQuery, 'Search query equals to designer');
 
-  // Set any properties with this.set('myProperty', 'value');
-  // Handle any actions with this.on('myAction', function(val) { ... });
+  };
+  this.set('searchChanged', searchChanged);
 
-  this.render(hbs`{{search-area}}`);
+  this.render(hbs`{{search-area searchChanged=searchChanged}}`);
 
-  assert.equal(this.$().text().trim(), '');
-
-  // Template block usage:
-  this.render(hbs`
-    {{#search-area}}
-      template block text
-    {{/search-area}}
-  `);
-
-  assert.equal(this.$().text().trim(), 'template block text');
+  this.$('input').val(actualSearchQuery);
+  this.$('input').trigger('keyup');
 });
