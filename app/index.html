@@ -86,12 +86,18 @@
       }
       .subscribe-button {
           min-height: 1.75rem;
-          background: 0 0
+          background: 0 0;
       }
       .subscribe-container {
           display: flex;
           justify-content: center;
           align-items: center
+      }
+      .search-area {
+          margin: 1.563rem auto;
+          display: flex;
+          justify-content: center;
+          align-items: center;
       }
       .post-a-job {
         border: none;
@@ -105,7 +111,7 @@
         top: 2rem;
         box-shadow: 0 0 1.875rem #E0E0E0;
         box-sizing: border-box;
-        height: 3.5rem;
+        height: 4rem;
         color: #616161;
         font-size: 1rem;
         font-weight: 600;
@@ -124,19 +130,28 @@
         position: relative;
         width: 100%;
       }
+      .email-input, .search-box {
+        border: none;
+        box-shadow: none;
+        padding: .375rem 1rem;
+        font-family: inherit;
+        font-weight: 100;
+        box-sizing: border-box;
+      }
       .email-input {
-          border: none;
-          box-shadow: none;
-          padding: .375rem 1rem;
-          background-color: #424242;
-          color: #F5F5F5;
-          font-family: inherit;
-          font-weight: 100;
-          font-size: .813rem;
-          margin-right: 1.25rem;
-          border-radius: .625rem;
-          height: 100%;
-          box-sizing: border-box
+        background-color: #424242;
+        color: #F5F5F5;
+        font-size: .813rem;
+        margin-right: 0.5rem;
+        height: 100%;
+      }
+      .search-box {
+        width: 66.6%;
+        height: 3rem;
+        font-size: 1.5rem;
+        background-color: #F5F5F5;
+        color: #424242;
+        margin: 0;
       }
       .job-title {
           margin-bottom: .5rem;
@@ -454,7 +469,7 @@
       @media (max-width: 768px) {
           .email-input,
           .nav-button {
-              font-weight: 700
+              font-weight: 400
           }
           h1 {
               font-size: .875rem
@@ -487,18 +502,28 @@
               width: 100%;
               border-radius: .125rem
           }
+          .job-title {
+            max-width: 14.5rem;
+          }
           .subscribe-container {
               flex-direction: column
           }
           .email-input {
               margin-right: 0;
-              margin-bottom: 1rem
+              margin-bottom: 0.5rem
+          }
+          .subscribe-button, .email-input {
+            width: 12rem;
+            max-width: 100%
           }
           .second-focus-point {
               width: 75%
           }
           .first-eye-contact-area {
               font-size: 1.5rem
+          }
+          .search-box {
+            width: 90%;
           }
           .sk-folding-cube {
               width: 2rem;
@@ -518,6 +543,9 @@
           }
           .fronthat-logo {
               height: 2.5rem
+          }
+          .subscribe-container {
+              height: 2.25rem;
           }
       }
     </style>
