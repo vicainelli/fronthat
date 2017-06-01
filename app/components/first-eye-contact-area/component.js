@@ -18,7 +18,6 @@ export default Ember.Component.extend({
     </div>
     <div class="post-a-job">
       {{#link-to 'post-a-job'
-        data-test-post-a-job-button
         class="nav-button ripple"
       }}
         Post a Job
