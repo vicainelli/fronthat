@@ -1,4 +1,7 @@
 module.exports = {
+  globals: {
+    "MediumEditor": true
+  },
   root: true,
   parserOptions: {
     ecmaVersion: 2017,

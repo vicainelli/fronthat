@@ -1,28 +1,7 @@
-{{#post-a-job-area-container postAJobSuccess=(route-action 'postAJobSuccess') as
-  |name updateName
-  email updateEmail
-  title updateTitle
-  url updateURL
-  description updateDescription
-  disabled
-  errors
-  loading
-  postAJob|
+{{editable-job-details
+  title=title
+  company=company
+  content=content
+  contentChanged=contentChanged
+  postAJobSuccess=(route-action 'postAJobSuccess')
 }}
-  {{post-a-job-area
-    name=name
-    updateName=updateName
-    email=email
-    updateEmail=updateEmail
-    title=title
-    updateTitle=updateTitle
-    url=url
-    updateURL=updateURL
-    description=description
-    updateDescription=updateDescription
-    disabled=disabled
-    errors=errors
-    loading=loading
-    postAJob=postAJob
-  }}
-{{/post-a-job-area-container}}

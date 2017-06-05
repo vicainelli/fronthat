@@ -1,7 +1,9 @@
 import jobs from '../mirage/json/jobs';
+import ENV from 'fronthat/config/environment';
+
 export default function() {
 
-  this.urlPrefix = 'https://api.fronthat.com';
+  this.urlPrefix = ENV.apiURL;
   this.namespace = '';
 
   this.get('/jobs', (db, request) => {
