@@ -44,13 +44,17 @@
     "ember-cli-mirage": "^0.3.1",
     "ember-cli-one-script": "0.0.1",
     "ember-cli-qunit": "^4.0.0-beta.1",
+    "ember-cli-sass": "^6.2.0",
     "ember-cli-shims": "^1.1.0",
     "ember-cli-showdown": "^3.2.1",
     "ember-cli-sri": "^2.1.0",
     "ember-cli-uglify": "^1.2.0",
+    "ember-component-css": "^0.3.4",
+    "ember-concurrency": "^0.8.5",
     "ember-export-application-global": "^2.0.0",
     "ember-fetch": "^1.5.0",
     "ember-json-stringify-safe-shim": "^1.0.0",
+    "ember-load-css": "^0.1.0",
     "ember-load-initializers": "^1.0.0",
     "ember-lodash-shim": "^2.0.0",
     "ember-native-dom-event-dispatcher": "^0.6.0",
@@ -76,6 +80,7 @@
     "ember-web-app-rename": "^1.0.0",
     "json-stringify-safe-es": "0.0.3",
     "loader.js": "^4.2.3",
+    "medium-editor": "^5.23.0",
     "redux": "3.6.0",
     "redux-offline": "2.0.0",
     "redux-persist": "^4.8.0",
@@ -88,5 +93,10 @@
   "engines": {
     "node": ">= 4"
   },
-  "private": true
+  "private": true,
+  "ember-addon": {
+    "paths": [
+      "lib/medium-editor"
+    ]
+  }
 }

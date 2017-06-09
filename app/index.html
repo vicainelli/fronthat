@@ -6,6 +6,11 @@
     <meta name="keywords" content="Remote, Frontend, Job, Design, AngularJS, JavaScript, EmberJS, ReactJS, WordPress, UI, UX, MeteorJS, Design, NodeJS, ReduxJS, HTML, CSS, jQuery, PHP, SASS, PhotoShop">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    <link rel="preload" href="{{rootURL}}assets/vendor.css" as="style" onload="this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="{{rootURL}}assets/vendor.css"></noscript>
+    <link rel="preload" href="{{rootURL}}assets/fronthat.css" as="style" onload="this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="{{rootURL}}assets/fronthat.css"></noscript>
+
     {{content-for "head"}}
     <style>
       html {

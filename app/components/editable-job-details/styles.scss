@@ -1,0 +1,23 @@
+& {
+  .bottom-toolbar {
+    background: #EEE;
+    padding: 0 1.25rem;
+  }
+  .email-toolbar {
+    background: #f7f7f7;
+  }
+  #email-input {
+    padding: 0 1.25rem;
+    font-size: 1em;
+    height: 100%;
+    width: 100%;
+    border: 0;
+    background: #f7f7f7;
+  }
+  .toolbar {
+    height: 3.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
