@@ -5,4 +5,5 @@ export default Ember.Component.extend({
   itemscope: '',
   itemtype: 'http://schema.org/JobPosting',
   attributeBindings: ['itemscope', 'itemtype'],
+  classNameBindings: ['job.attributes.highlighted'],
 });
