@@ -1,7 +1,7 @@
 {
   "name": "fronthat",
   "version": "1.0.0",
-  "description": "FrontHAT.com Progressive Web App",
+  "description": "FrontHAT, a job board for frontend developers and designers",
   "license": "MIT",
   "author": "Karl Ranna",
   "directories": {
