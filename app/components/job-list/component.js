@@ -4,16 +4,7 @@ const { computed } = Ember;
 
 export default Ember.Component.extend({
   fastboot: Ember.inject.service(),
-  isFastBoot: Ember.computed.reads('fastboot.isFastBoot'),
-
-  sortedJobs: computed('jobs', function() {
-    const byTimestamp = (x, y) => {
-      return y.attributes.timestamp - x.attributes.timestamp;
-    };
-    const sortedJobs = this.get('jobs')
-      .sort(byTimestamp);
-    return sortedJobs;
-  }),
+  isFastBoot: computed.reads('fastboot.isFastBoot'),
 
   layout: hbs`
     {{#if (eq fetching true)}}
@@ -28,12 +19,12 @@ export default Ember.Component.extend({
     {{#if jobs}}
       {{#if isFastBoot}}
         <div class="vertical-collection">
-          {{#each sortedJobs as |job|}}
+          {{#each jobs as |job|}}
             {{job-item job=job}}
           {{/each}}
         </div>
       {{else}}
-        {{#vertical-collection sortedJobs
+        {{#vertical-collection jobs
           containerSelector="body"
           staticHeight=true
           minHeight=125
