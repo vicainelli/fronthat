@@ -2,7 +2,7 @@
 [![Greenkeeper badge](https://badges.greenkeeper.io/erkarl/fronthat.svg)](https://greenkeeper.io/)
 [![Build Status](https://travis-ci.org/erkarl/fronthat.svg?branch=master)](https://travis-ci.org/erkarl/fronthat)
 
-This repository contains front end application for [fronthat.com](https://fronthat.com).
+FrontHAT, a job board for frontend developers and designers - [fronthat.com](https://fronthat.com).
 
 #### Overview
 
@@ -26,7 +26,7 @@ This repository contains front end application for [fronthat.com](https://fronth
 You will need the following things properly installed on your computer.
 
 * [Git](https://git-scm.com/)
-* [Node.js](https://nodejs.org/) (version >= 4 with NPM)
+* [Node.js](https://nodejs.org/) (version >= 4)
 * [Yarn](https://yarnpkg.com/en/)
 * [Ember CLI](https://ember-cli.com/)
 * [PhantomJS](http://phantomjs.org/)
@@ -51,6 +51,9 @@ You will need the following things properly installed on your computer.
 
 * `ember build` (development)
 * `ember build --environment production` (production)
+
+## Contributing
+Please do! Pull requests are welcome.
 
 ## License
 
