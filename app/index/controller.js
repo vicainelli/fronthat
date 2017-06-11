@@ -6,6 +6,9 @@ export default Ember.Controller.extend({
   actions: {
     firstVisibleChanged(object, index) {
       this.set('scrollPosition', index.toString());
+    },
+    filterBySearch(searchQuery) {
+      this.set('search', searchQuery);
     }
   },
 });
