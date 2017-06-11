@@ -8,30 +8,16 @@ export default Ember.Component.extend({
   isFastBoot: computed.reads('fastboot.isFastBoot'),
 
   sortedJobs: computed('jobs', 'search', function() {
-    const byTimestamp = (x, y) => {
-      return y.attributes.timestamp - x.attributes.timestamp;
-    };
     const searchQuery = this.get('search');
-
-    const bySearchQuery = (job) => {
-      return _.includes(job.attributes.title.toUpperCase(), searchQuery.toUpperCase());
-    };
-
     if (searchQuery) {
+      const bySearchQuery = (job) => {
+        return _.includes(job.attributes.title.toUpperCase(), searchQuery.toUpperCase());
+      };
       return this.get('jobs')
         .filter(bySearchQuery)
-        .sort(byTimestamp);
     }
-
-    return this.get('jobs')
-      .sort(byTimestamp);
+    return this.get('jobs');
   }),
-
-  actions: {
-    filterBySearch(searchQuery) {
-      this.set('search', searchQuery);
-    }
-  },
 
   layout: hbs`
     {{#if (eq fetching true)}}
@@ -44,24 +30,33 @@ export default Ember.Component.extend({
       </div>
     {{/if}}
     {{#if jobs}}
-      {{search-area searchChanged=(action 'filterBySearch')}}
+      {{search-area
+        searchQuery=search
+        searchChanged=filterBySearch
+      }}
       {{#if isFastBoot}}
         <div class="vertical-collection">
-          {{#each jobs as |job|}}
+          {{#each sortedJobs as |job|}}
             {{job-item job=job}}
           {{/each}}
         </div>
       {{else}}
-        {{#vertical-collection jobs
-          containerSelector="body"
-          staticHeight=true
-          minHeight=125
-          key='@index'
-          firstVisibleChanged=firstVisibleChanged
-          idForFirstItem=scrollPosition
-          as |job index|}}
-          {{job-item job=job}}
-        {{/vertical-collection}}
+        {{#if sortedJobs}}
+          {{#vertical-collection sortedJobs
+            containerSelector="body"
+            staticHeight=true
+            minHeight=125
+            key='@index'
+            firstVisibleChanged=firstVisibleChanged
+            idForFirstItem=scrollPosition
+            as |job index|}}
+            {{job-item job=job}}
+          {{/vertical-collection}}
+        {{else}}
+          <center>
+            <h1>Sorry, no results matching your query.</h1>
+          </center>
+        {{/if}}
       {{/if}}
     {{/if}}
   `
