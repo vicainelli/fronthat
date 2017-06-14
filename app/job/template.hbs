@@ -1,4 +1,11 @@
-{{title model.attributes.title}}
-{{title 'FrontHAT' prepend=true}}
-{{title model.attributes.company prepend=true}}
-{{job-details job=model}}
+{{#if model.notFound}}
+  {{not-found-area
+    message="Oops, the page you're trying to access has been removed or expired."
+    slug=model.slug
+  }}
+{{else}}
+  {{title model.attributes.title}}
+  {{title 'FrontHAT' prepend=true}}
+  {{title model.attributes.company prepend=true}}
+  {{job-details job=model}}
+{{/if}}

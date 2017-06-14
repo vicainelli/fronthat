@@ -13,6 +13,7 @@ Router.map(function() {
   this.route('not-found');
   this.route('post-a-job');
   this.route('post-a-job-success', { path: '/post-a-job/success' });
+  this.route('not-found', { path: '/*path' });
 });
 
 export default Router;

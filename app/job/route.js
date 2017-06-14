@@ -5,6 +5,7 @@ import ENV from 'fronthat/config/environment';
 
 export default Ember.Route.extend({
   redux: Ember.inject.service(),
+  fastboot: Ember.inject.service(),
 
   model(params) {
     const jobs = this.get('redux.store').getState().jobs.all;
@@ -43,13 +44,18 @@ export default Ember.Route.extend({
           .then(detailsFetched)
           .then(detailsJson)
       }).catch(() => {
-        this.transitionTo('/not-found');
+        if (this.get('fastboot.isFastBoot')) {
+          this.set('fastboot.response.statusCode', 404);
+        }
+        return {notFound: true, slug: fullSlug};
       });
     }
   },
 
   afterModel: function(model) {
-    this.setHeadTags(model);
+    if (!model.notFound) {
+      this.setHeadTags(model);
+    }
   },
 
   setHeadTags: function(model) {
