@@ -22,7 +22,7 @@ export default Ember.Component.extend({
         {{#link-to 'index'
           class="nav-button ripple"
         }}
-          Show Me Similar Posts
+          View Jobs List
         {{/link-to}}
       </p>
     </div>
